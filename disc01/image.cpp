@@ -32,18 +32,28 @@ uint8_t* Image::at(int x, int y) {
 
 Image Image::operator*(const Filter& filter) {
 	// FIXME
-	for(int i=0;i<this->width;++i)
-		for(int j=0;j<this->height;++j)
-		{
-			int result=0;
-			if(i+1<width)
-				result+=filter.at(i+1, j)**(this->at(i, j));
-			if(i-1>0)
-				result+=filter.at(i-1, j)**(this->at(i, j));
-			if(j+1<height)
-				result+=filter.at(i, j+1)**(this->at(i, j));
-			if(j-1<height)
-				result+=filter.at(i, j-1)**(this->at(i, j));
-			*(this->at(i, j))=result;
+	Image ret=Image(this->width, this->height);
+	// std::cout<<"output image created"<<std::endl;
+	for(int offset=0;offset<4;++offset) {
+		for (int i = 0; i < this->width; ++i) {
+			for (int j = 0; j < this->height; ++j) {
+				// printf("%d\t", *this->at(i,j));
+				int w = filter.width, h = filter.height;
+				int shift_i = 0, shift_j = 0;
+				float sum = 0;
+				for (int i_in = 0; i_in < w; ++i_in)
+					for (int j_in = 0; j_in < h; ++j_in) {
+						// std::cout<<"before this->at"<<std::endl;
+						shift_i = i - w / 2 + i_in;
+						shift_j = j - h / 2 + j_in;
+						if (shift_i >= 0 && shift_i < width && shift_j >= 0 && shift_j < height) {
+							int r = *(this->at(shift_i, shift_j)+offset);
+							sum += filter.at(i_in, j_in) * r;
+						}
+					}
+				*(ret.at(i, j)+offset) = (uint8_t)sum;
+			}
 		}
+	}
+	return ret;
 }

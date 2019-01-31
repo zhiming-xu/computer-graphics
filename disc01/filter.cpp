@@ -19,6 +19,7 @@ void Filter::read(std::string filename) {
 			rd >> tmp;
 			this->kernel.push_back(tmp);
 		}
+	this->normalize();
 	// FIXME
 }
 

@@ -29,7 +29,7 @@ public:
 private:
 	// The width and height of the image
 	unsigned width, height;
-	// Flattened 2d vector of pixel values as sets of 3 unsigned chars (RGB order).
+	// Flattened 2d vector of pixel values as sets of 3 unsigned chars (RGBA order).
 	std::vector<uint8_t> data;
 };
 
