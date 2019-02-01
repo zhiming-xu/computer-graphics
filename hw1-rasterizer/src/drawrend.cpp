@@ -503,18 +503,24 @@ void DrawRend::rasterize_triangle( float x0, float y0,
                          float x2, float y2,
                          Color color, Triangle *tri) {
   // NOTE: the points are triangles' endpoints, and tri represents its shape
-  int x_s=min(min(x0, x1), x2), x_e=max(max(x0, x1), x2);
-  int y_s=min(min(y0, y1), y2), y_e=max(max(y0, y1), y2);
+  int x_s=min(min(x0, x1), x2), x_e=max(max(x0, x1), x2)+1;// if not '+1' some points will not be tested
+  int y_s=min(min(y0, y1), y2), y_e=max(max(y0, y1), y2)+1;// hence result in white lines
   for(int i=x_s;i<x_e;++i)
     for(int j=y_s;j<y_e;++j)
     {
-      // cout<<i<<"\t"<<j<<endl;
       if(i>=this->width||j>=this->height)
         continue;
-      if(line_test(i+0.5, j+0.5, x0, y0, x1, y1)>0&&
-         line_test(i+0.5, j+0.5, x1, y1, x2, y2)>0&&
-         line_test(i+0.5, j+0.5, x2, y2, x0, y0)>0)
-        samplebuffer[j][i].fill_pixel(color);
+      int rate=samplebuffer[j][i].samples_per_side;
+      float step=1/sqrt(rate);
+      // iterate on the sub_pixels
+      for(int sub_i=0;sub_i<rate;++sub_i)
+        for(int sub_j=0;sub_j<rate;++sub_j)
+        {
+          if(line_test(i+step*(sub_i+0.5), j+step*(sub_j+0.5), x0, y0, x1, y1)>0&&
+             line_test(i+step*(sub_i+0.5), j+step*(sub_j+0.5), x1, y1, x2, y2)>0&&
+             line_test(i+step*(sub_i+0.5), j+step*(sub_j+0.5), x2, y2, x0, y0)>0)
+            samplebuffer[j][i].fill_color(sub_i, sub_j, color);
+        }
     }
 
   // Part 1: Fill in this function with basic triangle rasterization code.

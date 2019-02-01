@@ -115,6 +115,18 @@ private:
     }
 
     Color get_pixel_color() {
+      if(sub_pixels.size()==samples_per_side)
+      {
+        for(int k=0;k<3;++k)
+        {
+          int tmp=0;
+          for (int i = 0; i < samples_per_side; ++i)
+            for (int j = 0; j < samples_per_side; ++j)
+              tmp += sub_pixels[i][j][k];
+           // cout<<samples_per_side<<endl;
+          sub_pixels[0][0][k]=(unsigned char)(tmp*1.0/samples_per_side/samples_per_side);
+        }
+      }
       return Color(sub_pixels[0][0].data());
       // Part 2: Implement get_pixel_color() for supersampling.
     }
