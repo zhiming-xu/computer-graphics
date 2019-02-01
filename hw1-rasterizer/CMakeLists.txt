@@ -58,8 +58,7 @@ endif(APPLE)
 ##################
 # Build on Linux #
 ##################
-set(LINUX UNIX AND NOT APPLE)
-if(LINUX)
+if(UNIX AND NOT APPLE)
 
   # GCC only
   if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
@@ -78,7 +77,7 @@ if(LINUX)
 
   endif()
 
-endif(LINUX)
+endif()
 
 ####################
 # Build on Windows #
@@ -120,7 +119,9 @@ endif(WIN32)
 # Required packages
 find_package(OpenGL REQUIRED)
 find_package(Threads REQUIRED)
-find_package(Freetype REQUIRED)
+if(NOT WIN32)
+  find_package(Freetype REQUIRED)
+endif()
 
 # CGL
 add_subdirectory(CGL)

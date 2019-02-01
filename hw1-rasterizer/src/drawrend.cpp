@@ -491,11 +491,32 @@ void DrawRend::rasterize_line( float x0, float y0,
   }
 }
 
+// Line test
+inline float line_test(float x, float y, float x1, float y1, float x2, float y2)
+{
+  return -(x-x1)*(y2-y1)+(y-y1)*(x2-x1);
+}
+
 // Rasterize a triangle.
 void DrawRend::rasterize_triangle( float x0, float y0,
                          float x1, float y1,
                          float x2, float y2,
                          Color color, Triangle *tri) {
+  // NOTE: the points are triangles' endpoints, and tri represents its shape
+  int x_s=min(min(x0, x1), x2), x_e=max(max(x0, x1), x2);
+  int y_s=min(min(y0, y1), y2), y_e=max(max(y0, y1), y2);
+  for(int i=x_s;i<x_e;++i)
+    for(int j=y_s;j<y_e;++j)
+    {
+      // cout<<i<<"\t"<<j<<endl;
+      if(i>=this->width||j>=this->height)
+        continue;
+      if(line_test(i+0.5, j+0.5, x0, y0, x1, y1)>0&&
+         line_test(i+0.5, j+0.5, x1, y1, x2, y2)>0&&
+         line_test(i+0.5, j+0.5, x2, y2, x0, y0)>0)
+        samplebuffer[j][i].fill_pixel(color);
+    }
+
   // Part 1: Fill in this function with basic triangle rasterization code.
   //         Hint: Implement fill_color() function first so that you can see
   //         rasterized points and lines, then start rasterizing triangles.

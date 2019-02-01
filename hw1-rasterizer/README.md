@@ -1,4 +1,6 @@
-<img src="/cs184_sp16_content/article_images/3_1.jpg" width="800px" align="middle"/>
+# Project 1: Rasterizer
+
+<img src="https://cs184.eecs.berkeley.edu/cs184_sp16_content/article_images/3_1.jpg" width="800px" align="middle"/>
 
 In this assignment you will implement a simple rasterizer, including features like supersampling, hierarchical transforms, and texture mapping with antialiasing. At the end, you'll have a functional vector graphics renderer that can take in modified SVG (Scalable Vector Graphics) files, which are widely used on the internet.
 
@@ -10,29 +12,32 @@ In this assignment you will implement a simple rasterizer, including features li
 
 ### Getting started
 
-# FIX ME 
-Create your repo using GitHub Classroom by [clicking this link](). Then, clone the generated repo. Make sure you clone _your repo_, and not the class skeleton.
+First, accept the assignment in your CS184 website profile, following the instructions from GitHub Classroom. Then, clone the generated repo. Make sure you clone _your repo_, and not the class skeleton.
 
     $ git clone --recurse-submodule <YOUR_PRIVATE_REPO>
     
 Also ensure GitHub Pages is enabled for your assignment.
 
-Please consult this article for more information on [how to build and submit assignments for CS 184](classarticle:2).
+Please consult this article for more information on [how to build and submit assignments for CS 184](https://cs184.eecs.berkeley.edu/sp19/article/8/building-and-submitting-cs184-as).
 
 As you go through the assignment, [refer to the write-up guidelines and deliverables section below](#rubric). **It is recommended that you accumulate deliverables into sections in your webpage write-up as you work through the project.** You may find it helpful to skim this section before beginning your work.
 
 *Note: Do not squander all your hard work on this assignment by converting your png files into jpg or any other format!* Leave the screenshots as they are saved by the `'S'` key in the GUI, otherwise you will introduce artifacts that will ruin your rasterization efforts.
 
 Finally, you may find the following resources helpful: 
-**C++ Guide** (#7) for some quick tips and tricks on getting started with C++. 
-**Images as Data** (#8) on how images and colors are often represented in code. 
+**[C++ Guide](https://cs184.eecs.berkeley.edu/sp19/article/11/c-basics)** for some quick tips and tricks on getting started with C++. A slightly more detailed C++ guide can be [found here](https://github.com/Bryce-Summers/Writings/blob/master/Programming%20Guides/C_plus_plus_guide.pdf).
+**[Images as Data](https://cs184.eecs.berkeley.edu/sp19/article/7/images-as-data)** on how images and colors are often represented in code.
 
-<img src="/cs184_sp16_content/article_images/3_7.jpg" width="800px" align="middle"/>
+<img src="https://cs184.eecs.berkeley.edu/cs184_sp16_content/article_images/3_7.jpg" width="800px" align="middle"/>
 
 ## Using the GUI
 
 You can run the executable with the command
 
+    ./draw [path to svg file/folder to render]
+    
+Example:
+    
     ./draw ../svg/basic/test1.svg
 
 A flower should show up on your screen (after you do some work in Part 1). After finishing Part 3, you will be able to change the viewpoint by dragging your mouse to pan around or scrolling to zoom in and out. Here are all the keyboard shortcuts available (some depend on you implementing various parts of the assignment):
@@ -58,7 +63,7 @@ If you load a directory with up to 9 files, you can switch between them using th
 
 The project has 7 parts, divided into 3 sections, worth a total of 100 possible points. Some require only a few lines of code, while others are more substantial.
 
-**Section I: Rasterization (suggested completion checkpoint: Sunday 1/29)**
+**Section I: Rasterization (suggested completion checkpoint: Tuesday, Feb 5)**
 
 * Part 1: Rasterizing single-color triangles (20 pts)
 * Part 2: Antialiasing triangles (20 pts)
@@ -78,7 +83,7 @@ The project has 7 parts, divided into 3 sections, worth a total of 100 possible 
 
 There is a fair amount of code in the CGL library, which we will be using for future assignments. The relevant header files for this assignment are *vector2D.h*, *matrix3x3.h*, *color.h*, and *renderer.h*.
 
-Here is a very brief sketch of what happens when you launch `draw`: An `SVGParser` (in *svgparser.\**) reads in the input *svg* file(s), launches a OpenGL `Viewer` containing a `DrawRend` renderer, which enters an infinite loop and waits for input from the mouse and keyboard. DrawRend (*drawrend.\**) contains various callback functions hooked up to these events, but its main job happens inside the `DrawRend::redraw()` function. The high-level drawing work is done by the various `SVGElement` child classes (*svg.\**), which then pass their low-level point, line, and triangle rasterization data back to the three `DrawRend` rasterization functions.
+Here is a very brief sketch of what happens when you launch `draw`: An `SVGParser` (in *svgparser.\**) reads in the input *svg* file(s), launches a OpenGL `Viewer` containing a `DrawRend` renderer, which enters an infinite loop and waits for input from the mouse and keyboard. `DrawRend` (*drawrend.\**) contains various callback functions hooked up to these events, but its main job happens inside the `DrawRend::redraw()` function. The high-level drawing work is done by the various `SVGElement` child classes (*svg.\**), which then pass their low-level point, line, and triangle rasterization data back to the three `DrawRend` rasterization functions.
 
 Here are the files you will be modifying throughout the project:
 
@@ -92,13 +97,11 @@ In addition to modifying these, you will need to reference some of the other sou
 ## Section I: Rasterization
 
 ### Part 1: Rasterizing single-color triangles (20 pts)
-[**Relevant lecture: 2**](https://cs184.org/lecture/sampling/slide_021)
-
-# FIX ME (and other lecture refs)
+[**Relevant lecture: 2**](https://cs184.eecs.berkeley.edu/sp19/lecture/2/rasterization)
 
 Triangle rasterization is a core function in the graphics pipeline to convert input triangles into framebuffer pixel values. In Part 1, you will implement basic triangle rasterization.
 
-You may first want to read [this resource](classarticle:7) on how colors and images are represented as data. 
+You may first want to read [this resource](https://cs184.eecs.berkeley.edu/sp19/article/7/images-as-data) on how colors and images are represented as data. 
 
 First, fill in the `SampleBuffer::fill_color()` function in *drawrend.h*, which sets the color of a single sub-pixel sample. Each `SampleBuffer` instance represents a single pixel, and holds the many sub-pixel samples for this individual pixel in `std::vector<std::vector<PixelColorStorage>> sub_pixels`.
 
@@ -110,7 +113,7 @@ Next, fill in the `DrawRend::rasterize_triangle(...)` function in *drawrend.cpp*
 
 Notes:
 
- 
+ * `PixelColorStorage` stores each r, g, and b channel as uint8 from 0 to 255, while `Color` stores them as floats from 0.0 to 1.0. Pay attention to the different data types.
   * Remember to do point-in-triangle tests with the point exactly at the center of the pixel, not the corner. Your coordinates should be equal to some integer point plus (.5,.5).
   * You should not make any assumptions about the ordering of the given points (i.e. whether or not they are given in clockwise order). Check `svg/basic/test6.svg`.
   * For now, ignore the `Triangle *tri` input argument to the function. We will come back to this in Part 4.
@@ -130,13 +133,13 @@ For convenience, here is a list of functions you will need to modify:
 
 
 ### Part 2: Antialiasing triangles (20 pts)
-[**Relevant lecture: 3**](https://cs184.org/lecture/sample/slide_095)
+[**Relevant lecture: 3**](https://cs184.eecs.berkeley.edu/sp19/lecture/3/antialiasing)
 
 Use supersampling to antialias your triangles. The `sample_rate` parameter in `DrawRend` (adjusted using the `-` and `=` keys) tells you how many samples to use per pixel.
 
 The image below shows how sampling four times per pixel produces a better result than just sampling once, since some of the supersampled pixels are partially covered and will yield a smoother edge.
 
-<img src="/cs184_sp17_content/article_images/3_1.jpg" width="500px" align="middle"/>
+<img src="https://cs184.eecs.berkeley.edu/cs184_sp17_content/article_images/3_1.jpg" width="500px" align="middle"/>
 
 To do supersampling, each pixel is now divided into `sqrt(sample_rate) * sqrt(sample_rate)` sub-pixels. In other words, you still need to keep track of `height * width` pixels, but now each pixel has `sqrt(sample_rate) * sqrt(sample_rate)` sampled colors. You will need to do point-in-triangle tests at the center of each of these *sub-pixel* squares.
 
@@ -153,13 +156,14 @@ For convenience, here is a list of functions you will need to modify:
 
 
 ### Part 3: Transforms (10 pts)
-[**Relevant lecture: 4**](https://cs184.org/lecture/transforms-1)
+**Relevant lecture: TBD**
+<!--[**Relevant lecture: 4**](https://cs184.org/lecture/transforms-1)-->
 
 Implement the three transforms in the *transforms.cpp* file according to the [SVG spec](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/transform). The matrices are 3x3 because they operate in homogeneous coordinates -- you can see how they will be used on instances of `Vector2D` by looking at the way the `*` operator is overloaded in the same file.
 
 Once you've implemented these transforms, *svg/transforms/robot.svg* should render correctly, as follows:
 
-<img src="/cs184_sp17_content/article_images/3_.jpg" width="400px" align="middle"/>
+<img src="https://cs184.eecs.berkeley.edu/cs184_sp17_content/article_images/3_.jpg" width="400px" align="middle"/>
 
 For convenience, here is a list of functions in *transforms.cpp* you will need to modify:
 
@@ -173,7 +177,8 @@ For convenience, here is a list of functions in *transforms.cpp* you will need t
 ## Section II: Sampling
 
 ### Part 4: Barycentric coordinates (10 pts)
-[**Relevant lecture: 6**](https://cs184.eecs.berkeley.edu/lecture/texture)
+**Relevant lecture: TBD**
+<!--[**Relevant lecture: 6**](https://cs184.eecs.berkeley.edu/lecture/texture)-->
 
 Familiarize yourself with the `ColorTri` struct in *svg.h*. Modify your implementation of `DrawRend::rasterize_triangle(...)` so that if a non-NULL `Triangle *tri` pointer is passed in, it computes barycentric coordinates of each sample hit and passes them to `tri->color(...)` to request the appropriate color. Note that the barycentric coordinates are stored with type `Vector3D`, so you should use `p_bary[i]` to store the barycentric coordinate corresponding to triangle vertex $P_i$ for $i=0,1,2$.
 
@@ -186,11 +191,12 @@ For convenience, here is a list of functions you will need to modify:
 1. `DrawRend::rasterize_triangle`
 2. `ColorTri::color` in *svg.cpp*
 
-<img src="/cs184_sp16_content/article_images/3_4.jpg" width="800px" align="middle"/>
+<img src="https://cs184.eecs.berkeley.edu/cs184_sp16_content/article_images/3_4.jpg" width="800px" align="middle"/>
 
 
 ### Part 5: "Pixel sampling" for texture mapping (15 pts)
-[**Relevant lecture: 6**](https://cs184.eecs.berkeley.edu/lecture/texture)
+**Relevant lecture: TBD**
+<!--[**Relevant lecture: 6**](https://cs184.eecs.berkeley.edu/lecture/texture)-->
 
 Familiarize yourself with the `TexTri` struct in *svg.h*. This is the primitive that implements texture mapping. For each vertex, you are given corresponding *uv* coordinates that index into the `Texture` pointed to by `*tex`.
 
@@ -218,7 +224,8 @@ For convenience, here is a list of functions you will need to modify:
 
 
 ### Part 6: "Level sampling" with mipmaps for texture mapping (25 pts)
-[**Relevant lecture: 6**](https://cs184.eecs.berkeley.edu/lecture/texture)
+**Relevant lecture: TBD**
+<!--[**Relevant lecture: 6**](https://cs184.eecs.berkeley.edu/lecture/texture)-->
 
 Finally, add support for sampling different `MipMap` levels. The GUI toggles `DrawRend`'s `LevelSampleMethod` variable `lsm` using the `'L'` key.
 
@@ -262,8 +269,9 @@ Flex your right or left brain -- either show us your artistic side, or generate 
 
 * Your resulting *png* screenshot should be 800x800 resolution. Keep this in mind when writing your *svg* file.
 * Use the GUI's `'S'` functionality to save your screenshot as a *png*. Don't take your own screenshot of your rasterized result, or you'll ruin the quality of your hard work!
+* Note: The rasterizer cannot display svg Path elements, so do not include any curves in the svg you wish to load.
 
-Students will vote on their favorite submissions and the top voted submission(s) will receive extra credit!
+Students will vote on their favorite submissions and the top voted submission(s) will receive extra credit! More details regarding the art competition will be announced next week. Stay in tune!
 
 ## Submission
 
@@ -291,30 +299,31 @@ The write-up is one of our main methods of evaluating your work, so it is import
 #### Overview
 Give a high-level overview of what you implemented in this project. Think about what you've built as a whole. Share your thoughts on what interesting things you've learned from completing the project.
 
-#### Part 1
-* Walk through how you rasterize triangles in your own words. Explain how your algorithm is no worse than one that checks each sample within the bounding box of the triangle.
+#### Part 1 (20 pts)
+* Walk through how you rasterize triangles in your own words. 
+* Explain how your algorithm is no worse than one that checks each sample within the bounding box of the triangle.
 * Show a *png* screenshot of *basic/test4.svg* with the default viewing parameters and with the pixel inspector centered on an interesting part of the scene.
 * *Extra credit:* Explain any special optimizations you did beyond simple bounding box triangle rasterization, with a timing comparison table (we suggest using the c++ `clock()` function around the `svg.draw()` command in `DrawRend::redraw()` to compare millisecond timings with your various optimizations off and on).
 
-#### Part 2
+#### Part 2 (20 pts) 
 * Walk through how you implemented supersampling. Why is supersampling useful? What modifications did you make to the rasterization pipeline in the process? Explain how you used supersampling to antialias your triangles.
 * Show *png* screenshots of *basic/test4.svg* with the default viewing parameters and sample rates 1, 4, and 16 to compare them side-by-side. Position the pixel inspector over an area that showcases the effect dramatically; for example, a very skinny triangle corner. Explain why these results are observed.
 * *Extra credit:* If you implemented alternative antialiasing methods, describe them and include comparison pictures demonstrating the difference between your method and grid-based supersampling.
 
-#### Part 3
+#### Part 3 (10 pts)
 
 * Create an updated version of *svg/transforms/robot.svg* with cubeman doing something more interesting, like waving or running. Feel free to change his colors or proportions to suit your creativity. Save your *svg* file as *my_robot.svg* in your *docs/* directory and show a *png* screenshot of your rendered drawing in your write-up. Explain what you were trying to do with cubeman in words.
 
-#### Part 4
+#### Part 4 (10 pts)
 * Explain barycentric coordinates in your own words and use an image to aid you in your explanation. One idea is to use a *svg* file that plots a single triangle with one red, one green, and one blue vertex, which should produce a smoothly blended color triangle.
 * Show a *png* screenshot of *svg/basic/test7.svg* with default viewing parameters and sample rate 1. If you make any additional images with color gradients, include them.
 
-#### Part 5
+#### Part 5 (15 pts)
 * Explain pixel sampling in your own words and describe how you implemented it to perform texture mapping. Briefly discuss the two different pixel sampling methods, nearest and bilinear.
 * Check out the *svg* files in the *svg/texmap/* directory. Use the pixel inspector to find a good example of where bilinear sampling clearly defeats nearest sampling. Show and compare four *png* screenshots using nearest sampling at 1 sample per pixel, nearest sampling at 16 samples per pixel, bilinear sampling at 1 sample per pixel, and bilinear sampling at 16 samples per pixel.
 * Comment on the relative differences. Discuss when there will be a large difference between the two methods and why.
 
-#### Part 6
+#### Part 6 (25 pts)
 * Explain level sampling in your own words and describe how you implemented it for texture mapping.
 * You can now adjust choosing between pixel sampling and level sampling as well as adjust the number of samples per pixel. Analyze the tradeoffs between speed, memory usage, and antialiasing power between the various techniques at different zoom levels.
 * Show at least one example (using a *png* file you find yourself) comparing all four combinations of one of `L_ZERO` and `L_NEAREST` with one of `P_NEAREST` and `P_LINEAR` at a zoomed out viewpoint.
@@ -332,6 +341,5 @@ Give a high-level overview of what you implemented in this project. Think about 
 * Use only *relative* paths to files, such as `"./images/image.jpg"`
 * Do *NOT* use absolute paths, such as `"/Users/student/Desktop/image.jpg"`
 * Pay close attention to your filename extensions. Remember that on UNIX systems (such as the instructional machines), capitalization matters. `.png != .jpeg != .jpg != .JPG`
-* Be sure to adjust the permissions on your files so that they are world readable. For more information on this please see this [tutorial](http://www.grymoire.com/Unix/Permissions.html">http://www.grymoire.com/Unix/Permissions.html).
+* Be sure to adjust the permissions on your files so that they are world readable. For more information on this please see this [tutorial](http://www.grymoire.com/Unix/Permissions.html").
 * Start assembling your webpage early to make sure you have a handle on how to edit the HTML code to insert images and format sections.
-
