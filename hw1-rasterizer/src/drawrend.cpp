@@ -503,26 +503,42 @@ void DrawRend::rasterize_triangle( float x0, float y0,
                          float x2, float y2,
                          Color color, Triangle *tri) {
   // NOTE: the points are triangles' endpoints, and tri represents its shape
+  // For Part 2 (based on Part 1):
+  int flag = (tri!=NULL);
   int x_s=min(min(x0, x1), x2), x_e=max(max(x0, x1), x2)+1;// if not '+1' some points will not be tested
   int y_s=min(min(y0, y1), y2), y_e=max(max(y0, y1), y2)+1;// hence result in white lines
   for(int i=x_s;i<x_e;++i)
     for(int j=y_s;j<y_e;++j)
     {
-      if(i>=this->width||j>=this->height)
+      if (i >= this->width || j >= this->height)
         continue;
-      int rate=samplebuffer[j][i].samples_per_side;
-      float step=1/sqrt(rate);
+      int rate = samplebuffer[j][i].samples_per_side;
+      float step = 1 / sqrt(rate);
       // iterate on the sub_pixels
-      for(int sub_i=0;sub_i<rate;++sub_i)
-        for(int sub_j=0;sub_j<rate;++sub_j)
-        {
-          if(line_test(i+step*(sub_i+0.5), j+step*(sub_j+0.5), x0, y0, x1, y1)>0&&
-             line_test(i+step*(sub_i+0.5), j+step*(sub_j+0.5), x1, y1, x2, y2)>0&&
-             line_test(i+step*(sub_i+0.5), j+step*(sub_j+0.5), x2, y2, x0, y0)>0)
-            samplebuffer[j][i].fill_color(sub_i, sub_j, color);
+      for (int sub_i = 0; sub_i < rate; ++sub_i)
+        for (int sub_j = 0; sub_j < rate; ++sub_j) {
+          float t1 = line_test(i + step * (sub_i + 0.5), j + step * (sub_j + 0.5), x1, y1, x2, y2);
+          float t2 = line_test(i + step * (sub_i + 0.5), j + step * (sub_j + 0.5), x2, y2, x0, y0);
+          float t3 = line_test(i + step * (sub_i + 0.5), j + step * (sub_j + 0.5), x0, y0, x1, y1);
+          float alpha, beta, gamma;
+          if (t1 > 0 && t2 > 0 && t3 > 0)
+          {
+            if (flag)
+            {
+              float alpha_down = line_test(x0, y0, x1, y1, x2, y2);
+              float beta_down = line_test(x1, y1, x2, y2, x0, y0);
+              alpha = t1 / alpha_down;
+              beta = t2 / beta_down;
+              gamma = 1 - alpha - beta;
+              samplebuffer[j][i].fill_color(sub_i, sub_j, tri->color(Vector3D(alpha, beta, gamma)));
+            }
+            else
+            {
+              samplebuffer[j][i].fill_color(sub_i, sub_j, color);
+            }
+          }
         }
     }
-
   // Part 1: Fill in this function with basic triangle rasterization code.
   //         Hint: Implement fill_color() function first so that you can see
   //         rasterized points and lines, then start rasterizing triangles.
