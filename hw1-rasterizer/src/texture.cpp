@@ -9,26 +9,62 @@ namespace CGL {
 Color Texture::sample(const SampleParams &sp) {
   // Parts 5 and 6: Fill this in.
   // Should return a color sampled based on the psm and lsm parameters given
-  return Color();
+  if(sp.psm == P_NEAREST)
+      return sample_nearest(sp.p_uv, this->get_level(sp));
+  else if(sp.psm == P_LINEAR)
+      return sample_bilinear(sp.p_uv, this->get_level(sp));
 }
 
 float Texture::get_level(const SampleParams &sp) {
   // Optional helper function for Parts 5 and 6
-  return 0;
+  float ret = 0;
+  Vector2D bias_x = sp.p_dx_uv - sp.p_uv;
+  Vector2D bias_y = sp.p_dy_uv - sp.p_uv;
+  float D = log2(max(bias_x.norm2(), bias_y.norm2())) / 2;
+  switch(sp.lsm)
+  {
+      case L_ZERO:
+        break;
+      case L_NEAREST:
+        ret = ceil(log2(D) / 0.5 - 0.5);
+        break;
+      case L_LINEAR:
+        ret = floor(D) + (D - floor(D)) * (ceil(D) - floor(D));
+        break;
+  }
+  return ret;
 }
 
 // Returns the nearest sample given a particular level and set of uv coords
 Color Texture::sample_nearest(Vector2D uv, int level) {
   // Optional helper function for Parts 5 and 6
   // Feel free to ignore or create your own
-  return Color();
+  float actual_u = uv[0] * mipmap[level].width;
+  float actual_v = uv[1] * mipmap[level].height;
+  int sample_u = ceil(actual_u-0.5);
+  int sample_v = ceil(actual_v-0.5);
+  return mipmap[level].get_texel(sample_u, sample_v);
+}
+
+inline Color lerp(float x, Color v0, Color v1)
+{
+  return v0 + x * (v1 - v0);
 }
 
 // Returns the bilinear sample given a particular level and set of uv coords
 Color Texture::sample_bilinear(Vector2D uv, int level) {
   // Optional helper function for Parts 5 and 6
   // Feel free to ignore or create your own
-  return Color();
+  float actual_u = uv[0] * mipmap[level].width;
+  float actual_v = uv[1] * mipmap[level].height;
+  int sample_u1 = floor(actual_u), sample_u2 = ceil(actual_u);
+  int sample_v1 = floor(actual_v), sample_v2 = ceil(actual_v);
+  float s = sample_u2 - actual_u, t = sample_v2 - actual_v;
+  Color left_up = mipmap[level].get_texel(sample_u1, sample_v1);
+  Color right_up = mipmap[level].get_texel(sample_u2, sample_v1);
+  Color left_down = mipmap[level].get_texel(sample_u1, sample_v2);
+  Color right_down = mipmap[level].get_texel(sample_u2, sample_v2);
+  return lerp(t, lerp(s, left_down, right_down), lerp(s, left_up, right_up));
 }
 
 

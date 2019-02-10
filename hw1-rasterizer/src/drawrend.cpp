@@ -521,7 +521,7 @@ void DrawRend::rasterize_triangle( float x0, float y0,
           float t2 = line_test(i + step * (sub_i + 0.5), j + step * (sub_j + 0.5), x2, y2, x0, y0);
           float t3 = line_test(i + step * (sub_i + 0.5), j + step * (sub_j + 0.5), x0, y0, x1, y1);
           float alpha, beta, gamma;
-          if (t1 > 0 && t2 > 0 && t3 > 0)
+          if ((t1 > 0 && t2 > 0 && t3 > 0) || (t1<0 && t2<0 && t3<0))
           {
             if (flag)
             {
@@ -530,7 +530,21 @@ void DrawRend::rasterize_triangle( float x0, float y0,
               alpha = t1 / alpha_down;
               beta = t2 / beta_down;
               gamma = 1 - alpha - beta;
-              samplebuffer[j][i].fill_color(sub_i, sub_j, tri->color(Vector3D(alpha, beta, gamma)));
+              // for pixel_texture mapping
+              SampleParams sp;
+              sp.psm = this->psm;
+              sp.lsm = this->lsm;
+              // Add for level_texture mapping
+              float dx1 = line_test(i + step * (sub_i + 0.5) + 1, j + step * (sub_j + 0.5), x1, y1, x2, y2);
+              float dx2 = line_test(i + step * (sub_i + 0.5) + 1, j + step * (sub_j + 0.5), x2, y2, x0, y0);
+              float dx_alpha = dx1 / alpha_down, dx_beta = dx2 / beta_down;
+              float dx_gamma = 1 - dx_alpha - dx_beta;
+              float dy1 = line_test(i + step * (sub_i + 0.5), j + step * (sub_j + 0.5) + 1, x1, y1, x2, y2);
+              float dy2 = line_test(i + step * (sub_i + 0.5), j + step * (sub_j + 0.5) + 1, x2, y2, x0, y0);
+              float dy_alpha = dy1 / alpha_down, dy_beta = dy2 / beta_down;
+              float dy_gamma = 1 - dy_alpha - dy_beta;
+              samplebuffer[j][i].fill_color(sub_i, sub_j, tri->color(Vector3D(alpha, beta, gamma),\
+              Vector3D(dx_alpha, dx_beta, dx_gamma), Vector3D(dy_alpha, dy_beta, dy_gamma), sp));
             }
             else
             {
