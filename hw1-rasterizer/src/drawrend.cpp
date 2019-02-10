@@ -502,7 +502,7 @@ void DrawRend::rasterize_triangle( float x0, float y0,
                          float x1, float y1,
                          float x2, float y2,
                          Color color, Triangle *tri) {
-  // NOTE: the points are triangles' endpoints, and tri represents its shape
+  // NOTE: the points are triangles' endpoints
   // For Part 2 (based on Part 1):
   int flag = (tri!=NULL);
   int x_s=min(min(x0, x1), x2), x_e=max(max(x0, x1), x2)+1;// if not '+1' some points will not be tested
