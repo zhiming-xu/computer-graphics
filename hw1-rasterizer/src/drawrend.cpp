@@ -516,15 +516,16 @@ void DrawRend::rasterize_triangle( float x0, float y0,
       float step = 1 / sqrt(rate);
       // iterate on the sub_pixels
       for (int sub_i = 0; sub_i < rate; ++sub_i)
-        for (int sub_j = 0; sub_j < rate; ++sub_j) {
+      {
+        int sp_check = 1;
+        for (int sub_j = 0; sub_j < rate; ++sub_j)
+        {
           float t1 = line_test(j + step * (sub_i + 0.5), i + step * (sub_j + 0.5), x1, y1, x2, y2);
           float t2 = line_test(j + step * (sub_i + 0.5), i + step * (sub_j + 0.5), x2, y2, x0, y0);
           float t3 = line_test(j + step * (sub_i + 0.5), i + step * (sub_j + 0.5), x0, y0, x1, y1);
           float alpha, beta, gamma;
-          if ((t1 > 0 && t2 > 0 && t3 > 0) || (t1<0 && t2<0 && t3<0))
-          {
-            if (flag)
-            {
+          if ((t1 >= 0 && t2 >= 0 && t3 > 0) || (t1 <= 0 && t2 <= 0 && t3 <= 0)) {
+            if (flag) {
               float alpha_down = line_test(x0, y0, x1, y1, x2, y2);
               float beta_down = line_test(x1, y1, x2, y2, x0, y0);
               alpha = t1 / alpha_down;
@@ -544,14 +545,15 @@ void DrawRend::rasterize_triangle( float x0, float y0,
               float dy_alpha = dy1 / alpha_down, dy_beta = dy2 / beta_down;
               float dy_gamma = 1 - dy_alpha - dy_beta;
               samplebuffer[i][j].fill_color(sub_i, sub_j, tri->color(Vector3D(alpha, beta, gamma),
-              Vector3D(dx_alpha, dx_beta, dx_gamma), Vector3D(dy_alpha, dy_beta, dy_gamma), sp));
-            }
-            else
-            {
-              samplebuffer[i][j].fill_color(sub_i, sub_j, color);
+                                                                     Vector3D(dx_alpha, dx_beta, dx_gamma),
+                                                                     Vector3D(dy_alpha, dy_beta, dy_gamma), sp) * 255.0);
+            } else {
+              samplebuffer[i][j].fill_color(sub_i, sub_j, color * 255.0);
+              //cout<<color[0]<<' '<<color[1]<<' '<<color[2]<<endl;
             }
           }
         }
+      }
     }
   // Part 1: Fill in this function with basic triangle rasterization code.
   //         Hint: Implement fill_color() function first so that you can see

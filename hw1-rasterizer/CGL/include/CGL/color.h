@@ -59,16 +59,6 @@ class Color {
     return *this;
   }
 
-  // Subtraction
-  inline Color operator-( const Color& rhs ) const {
-    return Color( r - rhs.r, g - rhs.g, b - rhs.b);
-  }
-
-  inline Color& operator-=( const Color& rhs ) {
-    r -= rhs.r; g -= rhs.g; b -= rhs.b;
-    return *this;
-  }
-
   // Vector multiplication.
   inline Color operator*( const Color& rhs ) const {
     return Color( r * rhs.r, g * rhs.g, b * rhs.b);

@@ -103,9 +103,6 @@ private:
       PixelColorStorage &p = sub_pixels[i][j];
       for(int k=0;k<3;++k)
       {
-        if(c[k]<=1)
-          p[k] = (unsigned char) (c[k] * 255);
-        else
           p[k] = c[k];
       }
       // Part 1: Overwrite PixelColorStorage p using Color c.

@@ -32,8 +32,7 @@ struct MipLevel {
   Color get_texel(int tx, int ty)
   {
       uint8_t *p = (&texels[3*(ty*width + tx)]);
-      cout<<p[0]<<' '<<p[1]<<endl;
-      return (Color(p[0], p[1], p[2]));
+      return (Color(p));
   }
 };
 
