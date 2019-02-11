@@ -4,15 +4,41 @@
 #include <cmath>
 #include <algorithm>
 
+
+
 namespace CGL {
+
+inline Color lerp(float x, Color v0, Color v1)
+{
+  return v0 + x * (v1 - v0);
+}
 
 Color Texture::sample(const SampleParams &sp) {
   // Parts 5 and 6: Fill this in.
   // Should return a color sampled based on the psm and lsm parameters given
-  if(sp.psm == P_NEAREST)
-      return sample_nearest(sp.p_uv, this->get_level(sp));
-  else if(sp.psm == P_LINEAR)
-      return sample_bilinear(sp.p_uv, this->get_level(sp));
+  Color ret = Color();
+  float D = this->get_level(sp);
+  float D_floor = floor(D), D_ceil = ceil(D);
+  switch(sp.lsm)
+  {
+      case L_ZERO:
+        ret= sp.psm==P_NEAREST?sample_nearest(sp.p_uv, 0):sample_bilinear(sp.p_uv, 0);
+        break;
+      case L_NEAREST:
+        ret = sp.psm==P_NEAREST?sample_nearest(sp.p_uv, round(D)):sample_bilinear(sp.p_uv, round(D));
+        break;
+      case L_LINEAR:
+        if(sp.psm == P_NEAREST)
+        {
+          ret = lerp(D - D_floor, sample_nearest(sp.p_uv, D_ceil), sample_nearest(sp.p_uv, D_floor));
+        }
+        else if(sp.psm == P_LINEAR)
+        {
+          ret = lerp(D - D_floor, sample_bilinear(sp.p_uv, D_ceil), sample_bilinear(sp.p_uv, D_floor));
+        }
+        break;
+  }
+  return ret;
 }
 
 float Texture::get_level(const SampleParams &sp) {
@@ -20,19 +46,14 @@ float Texture::get_level(const SampleParams &sp) {
   float ret = 0;
   Vector2D bias_x = sp.p_dx_uv - sp.p_uv;
   Vector2D bias_y = sp.p_dy_uv - sp.p_uv;
+  bias_x[0]*=this->width, bias_x[1]*=this->height;
+  bias_y[0]*=this->width, bias_y[1]*=this->height;
   float D = log2(max(bias_x.norm2(), bias_y.norm2())) / 2;
-  switch(sp.lsm)
-  {
-      case L_ZERO:
-        break;
-      case L_NEAREST:
-        ret = ceil(log2(D) / 0.5 - 0.5);
-        break;
-      case L_LINEAR:
-        ret = floor(D) + (D - floor(D)) * (ceil(D) - floor(D));
-        break;
-  }
-  return ret;
+  if(D>this->mipmap.size()-1)
+    D = this->mipmap.size()-1;
+  else if(D<0)
+    D = 0;
+  return D;
 }
 
 // Returns the nearest sample given a particular level and set of uv coords
@@ -46,10 +67,6 @@ Color Texture::sample_nearest(Vector2D uv, int level) {
   return mipmap[level].get_texel(sample_u, sample_v);
 }
 
-inline Color lerp(float x, Color v0, Color v1)
-{
-  return v0 + x * (v1 - v0);
-}
 
 // Returns the bilinear sample given a particular level and set of uv coords
 Color Texture::sample_bilinear(Vector2D uv, int level) {

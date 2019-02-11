@@ -507,19 +507,19 @@ void DrawRend::rasterize_triangle( float x0, float y0,
   int flag = (tri!=NULL);
   int x_s=min(min(x0, x1), x2), x_e=max(max(x0, x1), x2)+1;// if not '+1' some points will not be tested
   int y_s=min(min(y0, y1), y2), y_e=max(max(y0, y1), y2)+1;// hence result in white lines
-  for(int i=x_s;i<x_e;++i)
-    for(int j=y_s;j<y_e;++j)
+  for(int i=y_s;i<y_e;++i)
+    for(int j=x_s;j<x_e;++j)
     {
-      if (i >= this->width || j >= this->height)
+      if (j >= this->width || i >= this->height)
         continue;
-      int rate = samplebuffer[j][i].samples_per_side;
+      int rate = samplebuffer[i][j].samples_per_side;
       float step = 1 / sqrt(rate);
       // iterate on the sub_pixels
       for (int sub_i = 0; sub_i < rate; ++sub_i)
         for (int sub_j = 0; sub_j < rate; ++sub_j) {
-          float t1 = line_test(i + step * (sub_i + 0.5), j + step * (sub_j + 0.5), x1, y1, x2, y2);
-          float t2 = line_test(i + step * (sub_i + 0.5), j + step * (sub_j + 0.5), x2, y2, x0, y0);
-          float t3 = line_test(i + step * (sub_i + 0.5), j + step * (sub_j + 0.5), x0, y0, x1, y1);
+          float t1 = line_test(j + step * (sub_i + 0.5), i + step * (sub_j + 0.5), x1, y1, x2, y2);
+          float t2 = line_test(j + step * (sub_i + 0.5), i + step * (sub_j + 0.5), x2, y2, x0, y0);
+          float t3 = line_test(j + step * (sub_i + 0.5), i + step * (sub_j + 0.5), x0, y0, x1, y1);
           float alpha, beta, gamma;
           if ((t1 > 0 && t2 > 0 && t3 > 0) || (t1<0 && t2<0 && t3<0))
           {
@@ -535,20 +535,20 @@ void DrawRend::rasterize_triangle( float x0, float y0,
               sp.psm = this->psm;
               sp.lsm = this->lsm;
               // Add for level_texture mapping
-              float dx1 = line_test(i + step * (sub_i + 0.5) + 1, j + step * (sub_j + 0.5), x1, y1, x2, y2);
-              float dx2 = line_test(i + step * (sub_i + 0.5) + 1, j + step * (sub_j + 0.5), x2, y2, x0, y0);
+              float dx1 = line_test(j + step * (sub_i + 0.5) + 1, i + step * (sub_j + 0.5), x1, y1, x2, y2);
+              float dx2 = line_test(j + step * (sub_i + 0.5) + 1, i + step * (sub_j + 0.5), x2, y2, x0, y0);
               float dx_alpha = dx1 / alpha_down, dx_beta = dx2 / beta_down;
               float dx_gamma = 1 - dx_alpha - dx_beta;
-              float dy1 = line_test(i + step * (sub_i + 0.5), j + step * (sub_j + 0.5) + 1, x1, y1, x2, y2);
-              float dy2 = line_test(i + step * (sub_i + 0.5), j + step * (sub_j + 0.5) + 1, x2, y2, x0, y0);
+              float dy1 = line_test(j + step * (sub_i + 0.5), i + step * (sub_j + 0.5) + 1, x1, y1, x2, y2);
+              float dy2 = line_test(j + step * (sub_i + 0.5), i + step * (sub_j + 0.5) + 1, x2, y2, x0, y0);
               float dy_alpha = dy1 / alpha_down, dy_beta = dy2 / beta_down;
               float dy_gamma = 1 - dy_alpha - dy_beta;
-              samplebuffer[j][i].fill_color(sub_i, sub_j, tri->color(Vector3D(alpha, beta, gamma),\
+              samplebuffer[i][j].fill_color(sub_i, sub_j, tri->color(Vector3D(alpha, beta, gamma),
               Vector3D(dx_alpha, dx_beta, dx_gamma), Vector3D(dy_alpha, dy_beta, dy_gamma), sp));
             }
             else
             {
-              samplebuffer[j][i].fill_color(sub_i, sub_j, color);
+              samplebuffer[i][j].fill_color(sub_i, sub_j, color);
             }
           }
         }

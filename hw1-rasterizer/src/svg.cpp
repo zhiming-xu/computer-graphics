@@ -62,7 +62,7 @@ Color TexTri::color(Vector3D p_bary, Vector3D p_dx_bary, Vector3D p_dy_bary, Sam
   // Part 6: Fill this in with trilinear sampling as well.
   sp.p_uv = p_bary[0]*p0_uv+p_bary[1]*p1_uv+p_bary[2]*p2_uv; // the relative coordinates
   sp.p_dx_uv = p_dx_bary[0]*p0_uv+p_dx_bary[1]*p1_uv+p_dx_bary[2]*p2_uv;
-  sp.p_dx_uv = p_dy_bary[0]*p0_uv+p_dy_bary[1]*p1_uv+p_dy_bary[2]*p2_uv;
+  sp.p_dy_uv = p_dy_bary[0]*p0_uv+p_dy_bary[1]*p1_uv+p_dy_bary[2]*p2_uv;
   return tex->sample(sp);
 }
 
