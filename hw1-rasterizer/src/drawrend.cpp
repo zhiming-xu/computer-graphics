@@ -524,7 +524,7 @@ void DrawRend::rasterize_triangle( float x0, float y0,
           float t2 = line_test(j + step * (sub_i + 0.5), i + step * (sub_j + 0.5), x2, y2, x0, y0);
           float t3 = line_test(j + step * (sub_i + 0.5), i + step * (sub_j + 0.5), x0, y0, x1, y1);
           float alpha, beta, gamma;
-          if ((t1 >= 0 && t2 >= 0 && t3 > 0) || (t1 <= 0 && t2 <= 0 && t3 <= 0)) {
+          if ((t1 >= 0 && t2 >= 0 && t3 >= 0) || (t1 <= 0 && t2 <= 0 && t3 <= 0)) {
             if (flag) {
               float alpha_down = line_test(x0, y0, x1, y1, x2, y2);
               float beta_down = line_test(x1, y1, x2, y2, x0, y0);
