@@ -67,14 +67,28 @@ namespace CGL
     // TODO Returns an approximate unit normal at this vertex, computed by
     // TODO taking the area-weighted average of the normals of neighboring
     // TODO triangles, then normalizing.
-    return Vector3D();
+    Vector3D ret = Vector3D(0, 0, 0);
+    auto h = halfedge();
+    h = h->twin();
+    auto h_orig = h;
+    do{
+        //area += tmp_area;
+        ret += h->face()->normal();
+        //h = h->twin()->next();
+        h = h->next()->twin();
+    }while(h != h_orig);
+    return ret.unit();
   }
 
   EdgeIter HalfedgeMesh::flipEdge( EdgeIter e0 )
   {
     // TODO Part 4.
     // TODO This method should flip the given edge and return an iterator to the flipped edge.
-    return e0;
+    auto h = e0->halfedge(), h_twin = e0->halfedge()->twin();
+    auto c = h->vertex(), b = h->twin()->vertex();
+    auto a = h->next()->vertex(), d = h->twin()->next()->vertex();
+    h->setNeighbors(h->next(), h->twin(), a, h->edge(), h->face());
+    h_twin->setNeighbors(h_twin->next(), h_twin->twin(), d, h_twin->edge(), h_twin->face());
   }
 
   VertexIter HalfedgeMesh::splitEdge( EdgeIter e0 )

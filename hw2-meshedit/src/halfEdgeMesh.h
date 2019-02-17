@@ -308,7 +308,7 @@ namespace CGL
          FaceIter&       face( void ) { return _face;   } ///< access the face the half edge is on
 
          HalfedgeCIter   twin( void ) const { return _twin;   } ///< access the twin half edge (const iterator)
-         HalfedgeCIter   next( void ) const { return _next;   } ///< access the next half edge (comst iterator)
+         HalfedgeCIter   next( void ) const { return _next;   } ///< access the next half edge (const iterator)
          VertexCIter   vertex( void ) const { return _vertex; } ///< access the vertex in the half edge (const iterator)
          EdgeCIter       edge( void ) const { return _edge;   } ///< access the edge the half edge is on (const iterator)
          FaceCIter       face( void ) const { return _face;   } ///< access the face the half edge is on (const iterator)
