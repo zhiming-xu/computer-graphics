@@ -5,7 +5,7 @@ project(ColladaViewer)
 # Build options
 #-------------------------------------------------------------------------------
 option(BUILD_LIBCGL "Build with libCGL"         ON)
-option(BUILD_DEBUG     "Build with debug settings"    ON)
+option(BUILD_DEBUG     "Build with debug settings"    OFF)
 option(BUILD_DOCS      "Build documentation"          OFF)
 
 #-------------------------------------------------------------------------------

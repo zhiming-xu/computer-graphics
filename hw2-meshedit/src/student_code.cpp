@@ -5,12 +5,25 @@ using namespace std;
 
 namespace CGL
 {
+  template <class T>
+  inline T lerp(const T &u, const T &v, double t)
+  {
+      return (1 - t) * u + t * v;
+  }
+
   void BezierCurve::evaluateStep()
   {
     // TODO Part 1.
     // Perform one step of the Bezier curve's evaluation at t using de Casteljau's algorithm for subdivision.
     // Store all of the intermediate control points into the 2D vector evaluatedLevels.
-    return;
+    const vector<Vector2D>&last_level = evaluatedLevels[evaluatedLevels.size()-1];
+    vector<Vector2D>new_level;
+    for(int i=0;i<last_level.size()-1;++i)
+    {
+        Vector2D new_point = lerp<Vector2D>(last_level[i], last_level[i+1], this->t);
+        new_level.push_back(new_point);
+    }
+    evaluatedLevels.push_back(new_level);
   }
 
 
@@ -20,7 +33,12 @@ namespace CGL
     // Evaluate the Bezier surface at parameters (u, v) through 2D de Casteljau subdivision.
     // (i.e. Unlike Part 1 where we performed one subdivision level per call to evaluateStep, this function
     // should apply de Casteljau's algorithm until it computes the final, evaluated point on the surface)
-    return Vector3D();
+    vector<Vector3D>bzc;
+    for(int i=0;i<this->controlPoints.size();++i)
+    {
+        bzc.push_back(this->evaluate1D(this->controlPoints[i], u));
+    }
+    return this->evaluate1D(bzc, v);
   }
 
   Vector3D BezierPatch::evaluate1D(std::vector<Vector3D> points, double t) const
@@ -28,7 +46,17 @@ namespace CGL
     // TODO Part 2.
     // Optional helper function that you might find useful to implement as an abstraction when implementing BezierPatch::evaluate.
     // Given an array of 4 points that lie on a single curve, evaluates the Bezier curve at parameter t using 1D de Casteljau subdivision.
-    return Vector3D();
+    if(points.size() == 1)
+        return points[0];
+    else
+    {
+        vector<Vector3D>new_level;
+        for(int i=0;i<points.size()-1;++i)
+        {
+            new_level.push_back(lerp<Vector3D>(points[i], points[i+1], t));
+        }
+        return this->evaluate1D(new_level, t);
+    }
  }
 
 
