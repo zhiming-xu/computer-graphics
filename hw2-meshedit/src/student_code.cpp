@@ -84,32 +84,45 @@ namespace CGL
   {
     // TODO Part 4.
     // TODO This method should flip the given edge and return an iterator to the flipped edge.
-    auto h = e0->halfedge(), h_twin = h->twin();
-    auto h_next = h->next(), h_next_next = h_next->next();
-    auto ht_next = h_twin->next(), ht_next_next = ht_next->next();
-    auto v1 = h_twin->vertex(), v3 = h->vertex();
+    auto h0 = e0->halfedge(), h3 = h0->twin();
+    auto h1 = h0->next(), h2 = h1->next();
+    auto h4 = h3->next(), h5 = h4->next();
+    auto h6 = h1->twin(), h7 = h2->twin();
+    auto h8 = h4->twin(), h9 = h5->twin();
+    auto v1 = h3->vertex(), v0 = h0->vertex(), v2 = h2->vertex(), v3 = h8->vertex();
+    auto f0 = h0->face(), f1 = h3->face();
+    auto e1 = h6->edge(), e2 = h7->edge(), e3 = h8->edge(), e4 = h9->edge();
     // e0->halfedge's origin point, and next halfedges
-    if(h->isBoundary() || h_twin->isBoundary() || ht_next->isBoundary()||
-       ht_next_next->isBoundary() || h_next->isBoundary() || h_next_next->isBoundary())
+    if(h0->isBoundary() || h1->isBoundary() || h2->isBoundary()||
+       h3->isBoundary() || h4->isBoundary() || h5->isBoundary())
         return e0;
     // cout<<(h->face()==h_next->face()&&h_next->face()==h_next_next->face())<<endl;
     // cout<<(h_twin->face()==ht_next->face()&&ht_next->face()==ht_next_next->face())<<endl;
-    h->vertex() = ht_next_next->vertex();
-    h->next() = h_next_next;
-    h_next_next->next() = ht_next;
-    ht_next->next() = h;
-    ht_next->face() = h->face();
-    // e0->halfedge->twin's origin point, and next halfedges
-    h_twin->vertex() = h_next_next->vertex();
-    h_twin->next() = ht_next_next;
-    ht_next_next->next() = h_next;
-    h_next->next() = h_twin;
-    h_next->face() = h_twin->face();
+    h0->setNeighbors(h1, h3, v3, e0, f0);
+    h1->setNeighbors(h2, h7, v2, e2, f0);
+    h2->setNeighbors(h0, h8, v0, e3, f0);
+    h3->setNeighbors(h4, h0, v2, e0, f1);
+    h4->setNeighbors(h5, h9, v3, e4, f1);
+    h5->setNeighbors(h3, h6, v1, e1, f1);
+    h6->setNeighbors(h6->next(), h5, v2, e1, h6->face());
+    h7->setNeighbors(h7->next(), h1, v0, e2, h7->face());
+    h8->setNeighbors(h8->next(), h2, v3, e3, h8->face());
+    h9->setNeighbors(h9->next(), h4, v1, e4, h9->face());
     // assign vertices' edge
-    v1->halfedge() = h_next;
-    v3->halfedge() = ht_next;
+    v0->halfedge() = h2;
+    v1->halfedge() = h5;
+    v2->halfedge() = h3;
+    v3->halfedge() = h0;
     // assign e0's primary halfedge
-    //e0->halfedge() = h_twin;
+    e0->halfedge() = h0;
+    e1->halfedge() = h6;
+    e2->halfedge() = h7;
+    e3->halfedge() = h8;
+    e4->halfedge() = h9;
+    // face
+    f0->halfedge() = h0;
+    f1->halfedge() = h3;
+
     return e0;
   }
 
@@ -118,7 +131,68 @@ namespace CGL
     // TODO Part 5.
     // TODO This method should split the given edge and return an iterator to the newly inserted vertex.
     // TODO The halfedge of this vertex should point along the edge that was split, rather than the new edges.
-    return newVertex();
+    // original halfedges
+    auto h0 = e0->halfedge(), h1=h0->next(), h2 = h1->next(),
+         h3 = h0->twin(), h4 = h3->next(), h5 = h4->next(),
+         h6 = h1->twin(), h7 = h2->twin(), h8 = h4->twin(),
+         h9 = h5->twin();
+    auto f0 = h0->face(), f1 = h3->face();
+    // original vertices
+    auto v1 = h3->vertex(), v2 = h0->vertex(),
+         v3 = h6->vertex(), v4 = h5->vertex();
+    auto new_vertex = newVertex();
+    // add new edges
+    auto e01 = newEdge(), e02 = newEdge(),
+         e03 = newEdge(), e04 = newEdge();
+    // add new halfedges
+    auto ha = newHalfedge(), hb = newHalfedge(), hc = newHalfedge(),
+         hd = newHalfedge(), he = newHalfedge(), hf = newHalfedge(),
+         hg = newHalfedge(), hh = newHalfedge();
+    // add new faces
+    auto f01 = newFace(), f02 = newFace(),
+         f11 = newFace(), f12 = newFace();
+    // new_vetex's location and halfedge it belongs to
+    new_vertex->position = (v1->position + v2->position) / 2;
+    new_vertex->halfedge() = ha;
+    // set new halfedges
+    ha->setNeighbors(h1, he, new_vertex, e01, f01);
+    hb->setNeighbors(ha, hc, v3, e03, f01);
+    hc->setNeighbors(h2, hb, new_vertex, e03, f11);
+    hd->setNeighbors(hc, hg, v2, e02, f11);
+    he->setNeighbors(hf, ha, v1, e01, f02);
+    hf->setNeighbors(h5, hh, new_vertex, e04, f02);
+    hg->setNeighbors(h4, hd, new_vertex, e02, f12);
+    hh->setNeighbors(hg, hf, v4, e04, f12);
+    deleteHalfedge(h0);
+    h1->setNeighbors(hb, h6, v1, h1->edge(), f01);
+    h2->setNeighbors(hd, h7, v3, h2->edge(), f11);
+    deleteHalfedge(h3);
+    h4->setNeighbors(hh, h8, v2, h4->edge(), f12);
+    h5->setNeighbors(he, h9, v4, h5->edge(), f02);
+    h6->setNeighbors(h6->next(), h1, v3, h6->edge(), h6->face());
+    h7->setNeighbors(h7->next(), h2, v2, h7->edge(), h7->face());
+    h8->setNeighbors(h8->next(), h4, v4, h8->edge(), h8->face());
+    h9->setNeighbors(h9->next(), h5, v1, h9->edge(), h9->face());
+    // vertex assignments
+    v1->halfedge() = h1;
+    v2->halfedge() = hd;
+    v3->halfedge() = hb;
+    v4->halfedge() = hh;
+    // edge assignments
+    e01->halfedge() = ha;
+    e02->halfedge() = hg;
+    e03->halfedge() = hc;
+    e04->halfedge() = hf;
+    // face assignments
+    f01->halfedge() = ha;
+    f02->halfedge() = hf;
+    f11->halfedge() = hc;
+    f12->halfedge() = hg;
+    // delete previous edge and face
+    deleteEdge(e0);
+    deleteFace(f0);
+    deleteFace(f1);
+    return new_vertex;
   }
 
 
