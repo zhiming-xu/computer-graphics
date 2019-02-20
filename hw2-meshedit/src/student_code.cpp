@@ -84,11 +84,33 @@ namespace CGL
   {
     // TODO Part 4.
     // TODO This method should flip the given edge and return an iterator to the flipped edge.
-    auto h = e0->halfedge(), h_twin = e0->halfedge()->twin();
-    auto c = h->vertex(), b = h->twin()->vertex();
-    auto a = h->next()->vertex(), d = h->twin()->next()->vertex();
-    h->setNeighbors(h->next(), h->twin(), a, h->edge(), h->face());
-    h_twin->setNeighbors(h_twin->next(), h_twin->twin(), d, h_twin->edge(), h_twin->face());
+    auto h = e0->halfedge(), h_twin = h->twin();
+    auto h_next = h->next(), h_next_next = h_next->next();
+    auto ht_next = h_twin->next(), ht_next_next = ht_next->next();
+    auto v1 = h_twin->vertex(), v3 = h->vertex();
+    // e0->halfedge's origin point, and next halfedges
+    if(h->isBoundary() || h_twin->isBoundary() || ht_next->isBoundary()||
+       ht_next_next->isBoundary() || h_next->isBoundary() || h_next_next->isBoundary())
+        return e0;
+    // cout<<(h->face()==h_next->face()&&h_next->face()==h_next_next->face())<<endl;
+    // cout<<(h_twin->face()==ht_next->face()&&ht_next->face()==ht_next_next->face())<<endl;
+    h->vertex() = ht_next_next->vertex();
+    h->next() = h_next_next;
+    h_next_next->next() = ht_next;
+    ht_next->next() = h;
+    ht_next->face() = h->face();
+    // e0->halfedge->twin's origin point, and next halfedges
+    h_twin->vertex() = h_next_next->vertex();
+    h_twin->next() = ht_next_next;
+    ht_next_next->next() = h_next;
+    h_next->next() = h_twin;
+    h_next->face() = h_twin->face();
+    // assign vertices' edge
+    v1->halfedge() = h_next;
+    v3->halfedge() = ht_next;
+    // assign e0's primary halfedge
+    //e0->halfedge() = h_twin;
+    return e0;
   }
 
   VertexIter HalfedgeMesh::splitEdge( EdgeIter e0 )
