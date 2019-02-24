@@ -132,67 +132,59 @@ namespace CGL
     // TODO This method should split the given edge and return an iterator to the newly inserted vertex.
     // TODO The halfedge of this vertex should point along the edge that was split, rather than the new edges.
     // original halfedges
+    if(e0->isBoundary())
+        return newVertex();
     auto h0 = e0->halfedge(), h1=h0->next(), h2 = h1->next(),
-         h3 = h0->twin(), h4 = h3->next(), h5 = h4->next(),
-         h6 = h1->twin(), h7 = h2->twin(), h8 = h4->twin(),
-         h9 = h5->twin();
+         h3 = h0->twin(), h4 = h3->next(), h5 = h4->next();
+
     auto f0 = h0->face(), f1 = h3->face();
     // original vertices
-    auto v1 = h3->vertex(), v2 = h0->vertex(),
-         v3 = h6->vertex(), v4 = h5->vertex();
+    auto v0 = h0->vertex(), v1 = h3->vertex(),
+         v2 = h2->vertex(), v3 = h5->vertex();
     auto new_vertex = newVertex();
     // add new edges
-    auto e01 = newEdge(), e02 = newEdge(),
-         e03 = newEdge(), e04 = newEdge();
+    auto e1 = h1->edge(), e2 = h2->edge(),
+         e3 = h4->edge(), e4 = h5->edge();
     // add new halfedges
-    auto ha = newHalfedge(), hb = newHalfedge(), hc = newHalfedge(),
-         hd = newHalfedge(), he = newHalfedge(), hf = newHalfedge(),
-         hg = newHalfedge(), hh = newHalfedge();
+    auto h6 = newHalfedge(), h7 = newHalfedge(), h8 = newHalfedge(),
+         h9 = newHalfedge(), h10 = newHalfedge(), h11 = newHalfedge();
+    // add new edges
+    auto e5 = newEdge(), e6 = newEdge(), e7 = newEdge();
     // add new faces
-    auto f01 = newFace(), f02 = newFace(),
-         f11 = newFace(), f12 = newFace();
+    auto f2 = newFace(), f3 = newFace();
     // new_vetex's location and halfedge it belongs to
     new_vertex->position = (v1->position + v2->position) / 2;
-    new_vertex->halfedge() = ha;
+    new_vertex->halfedge() = h0;
     // set new halfedges
-    ha->setNeighbors(h1, he, new_vertex, e01, f01);
-    hb->setNeighbors(ha, hc, v3, e03, f01);
-    hc->setNeighbors(h2, hb, new_vertex, e03, f11);
-    hd->setNeighbors(hc, hg, v2, e02, f11);
-    he->setNeighbors(hf, ha, v1, e01, f02);
-    hf->setNeighbors(h5, hh, new_vertex, e04, f02);
-    hg->setNeighbors(h4, hd, new_vertex, e02, f12);
-    hh->setNeighbors(hg, hf, v4, e04, f12);
-    deleteHalfedge(h0);
-    h1->setNeighbors(hb, h6, v1, h1->edge(), f01);
-    h2->setNeighbors(hd, h7, v3, h2->edge(), f11);
-    deleteHalfedge(h3);
-    h4->setNeighbors(hh, h8, v2, h4->edge(), f12);
-    h5->setNeighbors(he, h9, v4, h5->edge(), f02);
-    h6->setNeighbors(h6->next(), h1, v3, h6->edge(), h6->face());
-    h7->setNeighbors(h7->next(), h2, v2, h7->edge(), h7->face());
-    h8->setNeighbors(h8->next(), h4, v4, h8->edge(), h8->face());
-    h9->setNeighbors(h9->next(), h5, v1, h9->edge(), h9->face());
+    h0->setNeighbors(h1, h3, new_vertex, e0, f0);
+    h1->setNeighbors(h8, h1->twin(), v1, e1, f0);
+    h2->setNeighbors(h6, h2->twin(), v2, e2, f2);
+    h3->setNeighbors(h11, h0, v1, e0, f1);
+    h4->setNeighbors(h10, h4->twin(), v0, e3, f3);
+    h5->setNeighbors(h3, h5->twin(), v3, e4, f1);
+    h6->setNeighbors(h7, h9, v0, e6, f2);
+    h7->setNeighbors(h2, h8, new_vertex, e5, f2);
+    h8->setNeighbors(h0, h7, v2, e5, f2);
+    h9->setNeighbors(h4, h6, new_vertex, e6, f3);
+    h10->setNeighbors(h9, h11, v3, e7, f3);
+    h11->setNeighbors(h5, h10, new_vertex, e7, f1);
     // vertex assignments
-    v1->halfedge() = h1;
-    v2->halfedge() = hd;
-    v3->halfedge() = hb;
-    v4->halfedge() = hh;
+    new_vertex->isNew = true;
     // edge assignments
-    e01->halfedge() = ha;
-    e02->halfedge() = hg;
-    e03->halfedge() = hc;
-    e04->halfedge() = hf;
+    e5->halfedge() = h8;
+    e6->halfedge() = h6;
+    e7->halfedge() = h10;
+    e0->isNew = false;
+    e5->isNew = true;
+    e6->isNew = false;
+    e7->isNew = true;
     // face assignments
-    f01->halfedge() = ha;
-    f02->halfedge() = hf;
-    f11->halfedge() = hc;
-    f12->halfedge() = hg;
+    f0->halfedge() = h0;
+    f1->halfedge() = h3;
+    f2->halfedge() = h2;
+    f3->halfedge() = h4;
     // delete previous edge and face
-    deleteEdge(e0);
-    deleteFace(f0);
-    deleteFace(f1);
-    return new_vertex;
+    return e0->halfedge()->vertex();
   }
 
 
@@ -229,6 +221,78 @@ namespace CGL
 
     // TODO Finally, copy the new vertex positions into final Vertex::position.
 
-    return;
+    HalfedgeIter h;
+    VertexIter a, b, c, d;
+    EdgeIter e1, e2, e3;
+    FaceIter f1, f2, f3;
+    int edgeNum = 0;
+
+    for (auto e = mesh.edgesBegin(); e != mesh.edgesEnd(); e++)
+    {
+      edgeNum += 1;
+      e->isNew = false;
+      h = e->halfedge();
+      a = h->vertex();
+      c = h->twin()->vertex();
+      b = h->next()->twin()->vertex();
+      d = h->twin()->next()->twin()->vertex();
+      // new vertex postion
+      e->newPosition = (((a->position + c->position) * 3 + (b->position + d->position)) / 8.);  // parameter here
+    }
+
+
+    for (auto v = mesh.verticesBegin(); v != mesh.verticesEnd(); v++)
+    {
+      v->isNew = false;
+      Vector3D sum(0, 0, 0);
+
+      int n = 0;
+      h = v->halfedge();
+      do{
+        n += 1;
+        sum += h->twin()->vertex()->position;
+        h = h->twin()->next();
+      } while (h != v->halfedge());
+
+
+      double u;
+      if (n == 3)
+      {
+        u = (3. / 16);
+      }
+      else
+      {
+        u = 3. / (8 * n);
+      }
+      // it maybe slow to do this.. why don't put it in the if above..?
+      v->newPosition = ((1 - n * u) * v->position + u * sum);
+    }
+
+    auto e = mesh.edgesBegin();
+    for (int i = 0; i < edgeNum; i++, ++e)
+    {
+      auto v = mesh.splitEdge(e);
+      v->newPosition = e->newPosition;
+    }
+
+
+    for (auto e = mesh.edgesBegin(); e != mesh.edgesEnd(); e++)
+    {
+      if (e->isNew)
+      {
+        h = e->halfedge();
+        if ((h->vertex()->isNew && !h->twin()->vertex()->isNew)
+            || (!h->vertex()->isNew && h->twin()->vertex()->isNew))
+        {
+          mesh.flipEdge(e);
+        }
+      }
+    }
+
+    for (auto v = mesh.verticesBegin(); v != mesh.verticesEnd(); v++)
+    {
+      v->position = v->newPosition;
+    }
+
   }
 }
