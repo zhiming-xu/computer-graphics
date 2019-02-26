@@ -1,0 +1,347 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>WRITTEN</title><link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; word-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:first-child { margin-top: -20px; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; }
+button, input, select, textarea { color: inherit; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 2; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px !important; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { padding-left: 32px; padding-right: 32px; padding-bottom: 0px; break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  @page { margin: 20mm 0px; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="mermaid"] svg, [lang="flow"] svg { max-width: 100%; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+
+
+:root { --side-bar-bg-color: #fafafa; --control-text-color: #777; }
+html { font-size: 16px; }
+body { font-family: "Open Sans", "Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif; color: rgb(51, 51, 51); line-height: 1.6; }
+#write { max-width: 860px; margin: 0px auto; padding: 30px 30px 100px; }
+#write > ul:first-child, #write > ol:first-child { margin-top: 30px; }
+a { color: rgb(65, 131, 196); }
+h1, h2, h3, h4, h5, h6 { position: relative; margin-top: 1rem; margin-bottom: 1rem; font-weight: bold; line-height: 1.4; cursor: text; }
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor { text-decoration: none; }
+h1 tt, h1 code { font-size: inherit; }
+h2 tt, h2 code { font-size: inherit; }
+h3 tt, h3 code { font-size: inherit; }
+h4 tt, h4 code { font-size: inherit; }
+h5 tt, h5 code { font-size: inherit; }
+h6 tt, h6 code { font-size: inherit; }
+h1 { padding-bottom: 0.3em; font-size: 2.25em; line-height: 1.2; border-bottom: 1px solid rgb(238, 238, 238); }
+h2 { padding-bottom: 0.3em; font-size: 1.75em; line-height: 1.225; border-bottom: 1px solid rgb(238, 238, 238); }
+h3 { font-size: 1.5em; line-height: 1.43; }
+h4 { font-size: 1.25em; }
+h5 { font-size: 1em; }
+h6 { font-size: 1em; color: rgb(119, 119, 119); }
+p, blockquote, ul, ol, dl, table { margin: 0.8em 0px; }
+li > ol, li > ul { margin: 0px; }
+hr { height: 2px; padding: 0px; margin: 16px 0px; background-color: rgb(231, 231, 231); border: 0px none; overflow: hidden; box-sizing: content-box; }
+li p.first { display: inline-block; }
+ul, ol { padding-left: 30px; }
+ul:first-child, ol:first-child { margin-top: 0px; }
+ul:last-child, ol:last-child { margin-bottom: 0px; }
+blockquote { border-left: 4px solid rgb(223, 226, 229); padding: 0px 15px; color: rgb(119, 119, 119); }
+blockquote blockquote { padding-right: 0px; }
+table { padding: 0px; word-break: initial; }
+table tr { border-top: 1px solid rgb(223, 226, 229); margin: 0px; padding: 0px; }
+table tr:nth-child(2n), thead { background-color: rgb(248, 248, 248); }
+table tr th { font-weight: bold; border-width: 1px 1px 0px; border-top-style: solid; border-right-style: solid; border-left-style: solid; border-top-color: rgb(223, 226, 229); border-right-color: rgb(223, 226, 229); border-left-color: rgb(223, 226, 229); border-image: initial; border-bottom-style: initial; border-bottom-color: initial; text-align: left; margin: 0px; padding: 6px 13px; }
+table tr td { border: 1px solid rgb(223, 226, 229); text-align: left; margin: 0px; padding: 6px 13px; }
+table tr th:first-child, table tr td:first-child { margin-top: 0px; }
+table tr th:last-child, table tr td:last-child { margin-bottom: 0px; }
+.CodeMirror-lines { padding-left: 4px; }
+.code-tooltip { box-shadow: rgba(0, 28, 36, 0.3) 0px 1px 1px 0px; border-top: 1px solid rgb(238, 242, 242); }
+.md-fences, code, tt { border: 1px solid rgb(231, 234, 237); background-color: rgb(248, 248, 248); border-radius: 3px; padding: 2px 4px 0px; font-size: 0.9em; }
+code { background-color: rgb(243, 244, 244); padding: 0px 2px; }
+.md-fences { margin-bottom: 15px; margin-top: 15px; padding: 8px 1em 6px; }
+.md-task-list-item > input { margin-left: -1.3em; }
+@media print {
+  html { font-size: 13px; }
+  table, pre { break-inside: avoid; }
+  pre { word-wrap: break-word; }
+}
+.md-fences { background-color: rgb(248, 248, 248); }
+#write pre.md-meta-block { padding: 1rem; font-size: 85%; line-height: 1.45; background-color: rgb(247, 247, 247); border: 0px; border-radius: 3px; color: rgb(119, 119, 119); margin-top: 0px !important; }
+.mathjax-block > .code-tooltip { bottom: 0.375rem; }
+.md-mathjax-midline { background: rgb(250, 250, 250); }
+#write > h3.md-focus::before { left: -1.5625rem; top: 0.375rem; }
+#write > h4.md-focus::before { left: -1.5625rem; top: 0.285714rem; }
+#write > h5.md-focus::before { left: -1.5625rem; top: 0.285714rem; }
+#write > h6.md-focus::before { left: -1.5625rem; top: 0.285714rem; }
+.md-image > .md-meta { border-radius: 3px; padding: 2px 0px 0px 4px; font-size: 0.9em; color: inherit; }
+.md-tag { color: rgb(167, 167, 167); opacity: 1; }
+.md-toc { margin-top: 20px; padding-bottom: 20px; }
+.sidebar-tabs { border-bottom: none; }
+#typora-quick-open { border: 1px solid rgb(221, 221, 221); background-color: rgb(248, 248, 248); }
+#typora-quick-open-item { background-color: rgb(250, 250, 250); border-color: rgb(254, 254, 254) rgb(229, 229, 229) rgb(229, 229, 229) rgb(238, 238, 238); border-style: solid; border-width: 1px; }
+.on-focus-mode blockquote { border-left-color: rgba(85, 85, 85, 0.12); }
+header, .context-menu, .megamenu-content, footer { font-family: "Segoe UI", Arial, sans-serif; }
+.file-node-content:hover .file-node-icon, .file-node-content:hover .file-node-open-state { visibility: visible; }
+.mac-seamless-mode #typora-sidebar { background-color: var(--side-bar-bg-color); }
+.md-lang { color: rgb(180, 101, 77); }
+.html-for-mac .context-menu { --item-hover-bg-color: #E6F0FE; }
+#md-notification .btn { border: 0px; }
+.dropdown-menu .divider { border-color: rgb(229, 229, 229); }
+
+
+
+
+
+ .typora-export li, .typora-export p, .typora-export,  .footnote-line {white-space: normal;} 
+</style>
+</head>
+<body class='typora-export' >
+<div  id='write'  class = 'is-node'><h1><a name='header-n2' class='md-header-anchor '></a>CS 184: Computer Graphics and Imaging, Spring 2019</h1><h2><a name='header-n4' class='md-header-anchor '></a>Project 1: Rasterizer</h2><h3><a name='header-n5' class='md-header-anchor '></a>Zhiming Xu, 3034485754</h3><h3><a name='header-n6' class='md-header-anchor '></a>Overview</h3><p>What we mainly do in this project is draw an triangle. Concretely, we first determine whether a pixel on the screen belongs to a certain triangle by testing the pixel&#39;s relative position with regard to the triangle&#39;s edges and use supersampling to avoid aliasing (Part 1 and Part 2). Besides, we want to be able to change the triangles&#39; shapes, where the homogeneous coordinates arise (Part 3). We then need to assign appropriate colors for each pixel. So we introduce a method to convert Cartesian coordinates to barycentric ones, so that we can extract a particular color from a color triangle (in structure <code>ColorTri</code>) by them. (Part 4 and Part 5). In the end, we also want to add textures to our triangles, therefore, we make use of texture triangles ( in structure <code>TexTri</code>) to extract the color of the pixel (also with barycentric coordinates) we are sampling. </p><h2><a name='header-n8' class='md-header-anchor '></a>Section I: Rasterization</h2><h3><a name='header-n9' class='md-header-anchor '></a>Part 1: Rasterizing single-color triangles</h3><ul><li>I think rasterizing a triangle is like coloring grids by sampling. Since in real world, the edges of a triangle are continuous, but on screen, they need to be converted to a finite number of grids. Therefore, when given the coordinates of endpoints of a triangle, we need to determine those vertices included in it, and give them correct colors so that they original triangle can be displayed on screen.</li><li>My algorithm first find the min and max value of x&#39;s and y&#39;s. And only sample the grids within this range, i.e., sample all vertices included in the minimum bounding box of the triangle. Therefore, it is exactly the same as what&#39;s mentioned in the question.</li><li>As is shown in the figure below. 
+<img src='./screenshot_2-9_15-57-56.png' alt='Screenshot of test4. Obviously, the edges of cubic have many jaggies due to low sampling rate' referrerPolicy='no-referrer' /></li></ul><h3><a name='header-n16' class='md-header-anchor '></a>Part 2: Antialiasing triangles</h3><ul><li>Instead of just sampling once for each pixel, this time we need to sample muliple times for each pixel. 
+Concretely, we divide one pixel into <code>sample_per_side</code> subpixels per side, therefore, we now need to sample<code>sample_per_side * sample_per_side</code> times for one pixel. And average their values to derive its color. The reason why supersampling is useful is that it samples more pixels so that better determine to what degree a pixel belongs to
+    a triangle instead of just deciding inside or not. I added subpixel sampling in previous pixel sampling. By supersampling, the pixels partially in a triangle are assigned an intermediate color between blank and full. Thus the edges look smoother.</li><li>As are shown in the figures below.</li>
+<div align="middle">
+    <table style>
+        <tr>
+        <td>
+    <img src='./screenshot_2-9_16-30-25.png' align="middle" width="400px"/>
+    <figcaption align="middle">1x Sampling</figcaption>
+        </td>
+        <td>
+    <img src='./screenshot_2-9_16-30-30.png' align="middle" width="400px" />
+        <figcaption align ="middle">4x Sampling</figcaption>
+        </td>
+        </tr>
+    <br>
+        <tr>
+            <td>
+                <img src='./screenshot_2-9_16-30-34.png' align="middle" width="400px" />
+                <figcaption align ="middle">9x Sampling</figcaption>
+            </td>
+            <td>
+                <img src='./screenshot_2-9_16-30-39.png' align="middle" width="400px" />
+                <figcaption align ="middle">4x Sampling</figcaption>
+            </td>
+        </tr>
+    </table>
+</div>
+</ul>
+    <h3>
+        <a name='header-n22' class='md-header-anchor '></a>Part 3: Transforms
+    </h3>
+    <p>
+    <li>I modify the part that controlling the cubeman&#39;s arms and make it look like jumping down.
+    </li>
+    </p>
+    <p>
+        <img src='screenshot_2-12_21-22-29.png' alt='Robot' referrerPolicy='no-referrer' />
+    </p>
+    <h2>
+        <a name='header-n25' class='md-header-anchor '>
+
+        </a>
+        Section 2: Sampling
+    </h2>
+    <h3>
+        <a name='header-n26' class='md-header-anchor '>
+
+        </a>
+        Part 4: Barycentric coordinates
+    </h3>
+    <ul>
+        <li>
+            I think barycentric coordinates is another way to represent the location of a point within a specific triangle.</li><li>As is shown in the figure below.
+        <img src='./screenshot_2-10_20-39-25.png' alt='svg/basic/test7' referrerPolicy='no-referrer' />
+</li>
+</ul>
+    <h3><a name='header-n31' class='md-header-anchor '></a>Part 5: Pixel sampling</h3><ul><li><p>Pixel sample is determine a pixel&#39;s relevant location (via barycentric coordinates) within a triangle and use the color in the same location of the texture to color this pixel. I implemented it in the following way:</p><ul><li><code>raterize_trianlge</code> has a parameter <code>tri</code>, which in this case is a pointer to <code>TexTri</code> structure, and has a virtual method <code>TexTri::color</code>.</li><li>We need to use this method to derive texture color, which takes in the sampled pixel&#39;s barycentric coordinates <code>p_bary</code> and <code>sp</code> which indicates sampling parameters as the only useful parameters. </li><li>In <code>tri-&gt;color</code>, the weighted sum of texture triangle&#39;s endpoints&#39; colors, i.e., <code>p0_col</code>, <code>p1_col</code>, and <code>p2_col</code>, is calculated and set as <code>sp.p_uv</code>.</li><li><code>tri-&gt;tex-&gt;sample</code> is called to derive correct color by either <em>nearest</em> or <em>linear</em>, which returns the color of the nearest pixels of texture or the linear interpolation of the four nearest pixels of texture.</li></ul></li><li><p>Nearest: as this name suggests, substitute the sampled pixel with a texture pixel nearest to it.</p></li><li><p>Linear: substitute the sampled pixel with the weighted linear sum of four texture pixels nearest to it.</p></li><li><p>The four figures show: 1x nearest, 16x nearest, 1x linear, 16x linear, respectively
+
+        <div align="middle">
+            <table style>
+                <tr>
+                    <td>
+                        <img src="./screenshot_2-10_22-0-25.png" align="middle" width="400px"/>
+                        <figcaption align="middle">1x nearest</figcaption>
+                    </td>
+                    <td>
+                        <img src="./screenshot_2-10_22-0-33.png" align="middle" width="400px"/>
+                        <figcaption align="middle">16x nearest</figcaption>
+                    </td>
+                </tr>
+                <br>
+                <tr>
+                    <td>
+                        <img src="./screenshot_2-10_22-0-48.png" align="middle" width="400px"/>
+                        <figcaption align="middle">1x linear</figcaption>
+                    </td>
+                    <td>
+                        <img src="./screenshot_2-10_22-0-41.png" align="middle" width="400px"/>
+                        <figcaption align="middle">16x linear</figcaption>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+
+    </p></li><li><p>I think if there is some thin part, linear method will perform better because nearest method is likely to ignore this part because it is substituted with a nearby pixel. </p></li></ul><h3><a name='header-n52' class='md-header-anchor '></a>Part 6: Level sampling</h3><ul><li><p>Level sampling is a method in addition to pixel sampling. In order to deal with images&#39; different sizes, we can pick the most suitable texture to sample a pixel to get better results. I implemented it by completing <code>get_level</code> method and pass it to previous pixel sampling methods according to <code>sp.lsm</code>. For <code>L_NEAREST</code>, calculate image size and use the most similar mipmap to color the pixel. For <code>L_LINEAR</code>, use the two most similar mipmap&#39;s linear interpolation to color the pixel.</p></li><li><p>I think if not room, supersampling looks quite satisfying, however, it will significantly increase time and space complexity (by <code>samples_per_side^2</code> times). And level sampling is especially good for zoomed images, like Mario shown below. Without level sampling, the lower part of him can&#39;t be shown due to its  size. Pixel sampling are also good at avoiding jaggies, we can see clearly from the comparison between the third and fourth pictures, where the jaggies are gone by <code>P_LINEAR</code>. And both of the latter two methods increase memory consumption and time complexity no more than <span class="MathJax_SVG" tabindex="-1" style="font-size: 100%; display: inline-block;"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="4.74ex" height="2.577ex" viewBox="0 -806.1 2041 1109.7" role="img" focusable="false" style="vertical-align: -0.705ex;"><defs><path stroke-width="0" id="E1-MJMATHI-4F" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"></path><path stroke-width="0" id="E1-MJMAIN-28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path><path stroke-width="0" id="E1-MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path stroke-width="0" id="E1-MJMAIN-29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><use xlink:href="#E1-MJMATHI-4F" x="0" y="0"></use><use xlink:href="#E1-MJMAIN-28" x="763" y="0"></use><use xlink:href="#E1-MJMAIN-31" x="1152" y="0"></use><use xlink:href="#E1-MJMAIN-29" x="1652" y="0"></use></g></svg></span><script type="math/tex">O(1)</script>, which are computationally cheap than supersampling.</p></li><li><p>The comparison is shown below, they are <code>L_ZERO, P_NEAREST</code>, <code>L_ZERO, P_LINEAR</code>, <code>L_NEAREST, P_NEAREST</code>,  and <code>L_NEAREST, P_LINEAR</code>, respectively.
+
+    </p>
+</ul>
+    <div align="middle">
+        <table style>
+            <tr>
+                <td>
+                    <img src="./screenshot_2-12_21-13-14.png" align="middle" width="400px"/>
+                    <figcaption align="middle">Level zero, Pixel nearest</figcaption>
+                </td>
+                <td>
+                    <img src="./screenshot_2-12_21-13-16.png" align="middle" width="400px"/>
+                    <figcaption align="middle">Level zero, Pixel linear</figcaption>
+                </td>
+            </tr>
+            <br>
+            <tr>
+                <td>
+                    <img src="./screenshot_2-12_21-20-50.png" align="middle" width="400px"/>
+                    <figcaption align="middle">Level nearest, Pixel neares</figcaption>
+                </td>
+                <td>
+                    <img src="./screenshot_2-12_21-20-55.png" align="middle" width="400px"/>
+                    <figcaption align="middle">Level nearest, Pixel linear</figcaption>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
