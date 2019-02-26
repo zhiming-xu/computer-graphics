@@ -153,7 +153,7 @@ namespace CGL
     // add new faces
     auto f2 = newFace(), f3 = newFace();
     // new_vetex's location and halfedge it belongs to
-    new_vertex->position = (v1->position + v2->position) / 2;
+    new_vertex->position = (v0->position + v1->position) / 2;
     new_vertex->halfedge() = h0;
     // set new halfedges
     h0->setNeighbors(h1, h3, new_vertex, e0, f0);
@@ -237,9 +237,8 @@ namespace CGL
       b = h->next()->twin()->vertex();
       d = h->twin()->next()->twin()->vertex();
       // new vertex postion
-      e->newPosition = (((a->position + c->position) * 3 + (b->position + d->position)) / 8.);  // parameter here
+      e->newPosition = (((a->position + c->position) * 3 + (b->position + d->position)) / 8);
     }
-
 
     for (auto v = mesh.verticesBegin(); v != mesh.verticesEnd(); v++)
     {
@@ -254,17 +253,8 @@ namespace CGL
         h = h->twin()->next();
       } while (h != v->halfedge());
 
-
       double u;
-      if (n == 3)
-      {
-        u = (3. / 16);
-      }
-      else
-      {
-        u = 3. / (8 * n);
-      }
-      // it maybe slow to do this.. why don't put it in the if above..?
+      u = n==3?3.0 / 16:3.0 / (8 * n);
       v->newPosition = ((1 - n * u) * v->position + u * sum);
     }
 
@@ -274,7 +264,6 @@ namespace CGL
       auto v = mesh.splitEdge(e);
       v->newPosition = e->newPosition;
     }
-
 
     for (auto e = mesh.edgesBegin(); e != mesh.edgesEnd(); e++)
     {
