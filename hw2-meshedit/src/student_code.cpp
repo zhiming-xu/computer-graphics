@@ -68,16 +68,16 @@ namespace CGL
     // TODO taking the area-weighted average of the normals of neighboring
     // TODO triangles, then normalizing.
     Vector3D ret = Vector3D(0, 0, 0);
-    auto h = halfedge();
-    h = h->twin();
-    auto h_orig = h;
-    do{
+    auto h = this->halfedge();
+      h = h->twin();
+      auto h_orig = h;
+      do {
         //area += tmp_area;
         ret += h->face()->normal();
         //h = h->twin()->next();
         h = h->next()->twin();
-    }while(h != h_orig);
-    return ret.unit();
+      } while (h != h_orig && !h->isBoundary());
+      return ret.unit();
   }
 
   EdgeIter HalfedgeMesh::flipEdge( EdgeIter e0 )
@@ -132,8 +132,53 @@ namespace CGL
     // TODO This method should split the given edge and return an iterator to the newly inserted vertex.
     // TODO The halfedge of this vertex should point along the edge that was split, rather than the new edges.
     // original halfedges
+
     if(e0->isBoundary())
-        return newVertex();
+      return e0->halfedge()->vertex();
+      /*
+     * {
+        auto h0 = e0->halfedge()->isBoundary()?e0->halfedge()->twin():e0->halfedge(),
+             h1=h0->next(), h2 = h1->next();
+        auto f0 = h0->face();
+        // original vertices
+        auto v0 = h0->vertex(), v1 = h1->vertex(), v2 = h2->vertex();
+        auto new_vertex = newVertex();
+        // add new edges
+        auto e1 = h1->edge(), e2 = h2->edge();
+        // add new halfedges
+        auto h6 = newHalfedge(), h7 = newHalfedge(), h8 = newHalfedge(), h9 = newHalfedge();
+        // add new edges
+        auto e5 = newEdge(), e6 = newEdge();
+        // add new faces
+        // cout<<"if f0 is boundary: "<<f0->isBoundary()<<endl;
+        auto f2 = newFace(), b = newBoundary();
+        // new_vetex's location and halfedge it belongs to
+        new_vertex->position = (v0->position + v1->position) / 2;
+        new_vertex->halfedge() = h0;
+        // set new halfedges
+        h0->setNeighbors(h1, h0->twin(), new_vertex, e0, f0);
+        h1->setNeighbors(h8, h1->twin(), v1, e1, f0);
+        h2->setNeighbors(h6, h2->twin(), v2, e2, f2);
+        h6->setNeighbors(h7, h9, v0, e6, f2);
+        h7->setNeighbors(h2, h8, new_vertex, e5, f2);
+        h8->setNeighbors(h0, h7, v2, e5, f0);
+        h9->face() = b;
+        // vertex assignments
+        new_vertex->isNew = true;
+        // edge assignments
+        e5->halfedge() = h8;
+        e6->halfedge() = h6;
+        e0->isNew = false;
+        e5->isNew = true;
+        e6->isNew = false;
+        // face assignments
+        f0->halfedge() = h0;
+        f2->halfedge() = h2;
+        b->halfedge() = h9;
+        return e0->halfedge()->vertex();
+        // delete previous edge and face
+    }
+    else{*/
     auto h0 = e0->halfedge(), h1=h0->next(), h2 = h1->next(),
          h3 = h0->twin(), h4 = h3->next(), h5 = h4->next();
 
@@ -164,7 +209,7 @@ namespace CGL
     h5->setNeighbors(h3, h5->twin(), v3, e4, f1);
     h6->setNeighbors(h7, h9, v0, e6, f2);
     h7->setNeighbors(h2, h8, new_vertex, e5, f2);
-    h8->setNeighbors(h0, h7, v2, e5, f2);
+    h8->setNeighbors(h0, h7, v2, e5, f0);
     h9->setNeighbors(h4, h6, new_vertex, e6, f3);
     h10->setNeighbors(h9, h11, v3, e7, f3);
     h11->setNeighbors(h5, h10, new_vertex, e7, f1);
@@ -186,8 +231,6 @@ namespace CGL
     // delete previous edge and face
     return e0->halfedge()->vertex();
   }
-
-
 
   void MeshResampler::upsample( HalfedgeMesh& mesh )
   {
