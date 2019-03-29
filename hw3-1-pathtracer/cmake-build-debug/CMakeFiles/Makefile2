@@ -59,10 +59,10 @@ RM = /snap/clion/61/bin/cmake/linux/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/steven/CS184-GR/p3-1-pathtracer
+CMAKE_SOURCE_DIR = /home/steven/CS184-GR/hw3-1-pathtracer
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug
+CMAKE_BINARY_DIR = /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug
 
 #=============================================================================
 # Directory level rules for directory CGL
@@ -113,7 +113,7 @@ CGL/deps/glew/preinstall:
 CGL/deps/glew/CMakeFiles/glew.dir/all:
 	$(MAKE) -f CGL/deps/glew/CMakeFiles/glew.dir/build.make CGL/deps/glew/CMakeFiles/glew.dir/depend
 	$(MAKE) -f CGL/deps/glew/CMakeFiles/glew.dir/build.make CGL/deps/glew/CMakeFiles/glew.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug/CMakeFiles --progress-num=18,19,20,21 "Built target glew"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug/CMakeFiles --progress-num=18,19,20,21 "Built target glew"
 .PHONY : CGL/deps/glew/CMakeFiles/glew.dir/all
 
 # Include target in all.
@@ -123,9 +123,9 @@ all: CGL/deps/glew/CMakeFiles/glew.dir/all
 
 # Build rule for subdir invocation for target.
 CGL/deps/glew/CMakeFiles/glew.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug/CMakeFiles 4
 	$(MAKE) -f CMakeFiles/Makefile2 CGL/deps/glew/CMakeFiles/glew.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug/CMakeFiles 0
 .PHONY : CGL/deps/glew/CMakeFiles/glew.dir/rule
 
 # Convenience name for target.
@@ -169,14 +169,14 @@ CGL/deps/glfw/preinstall: CGL/deps/glfw/src/preinstall
 CGL/deps/glfw/CMakeFiles/uninstall.dir/all:
 	$(MAKE) -f CGL/deps/glfw/CMakeFiles/uninstall.dir/build.make CGL/deps/glfw/CMakeFiles/uninstall.dir/depend
 	$(MAKE) -f CGL/deps/glfw/CMakeFiles/uninstall.dir/build.make CGL/deps/glfw/CMakeFiles/uninstall.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug/CMakeFiles --progress-num= "Built target uninstall"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug/CMakeFiles --progress-num= "Built target uninstall"
 .PHONY : CGL/deps/glfw/CMakeFiles/uninstall.dir/all
 
 # Build rule for subdir invocation for target.
 CGL/deps/glfw/CMakeFiles/uninstall.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug/CMakeFiles 0
 	$(MAKE) -f CMakeFiles/Makefile2 CGL/deps/glfw/CMakeFiles/uninstall.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug/CMakeFiles 0
 .PHONY : CGL/deps/glfw/CMakeFiles/uninstall.dir/rule
 
 # Convenience name for target.
@@ -219,7 +219,7 @@ CGL/deps/glfw/src/preinstall:
 CGL/deps/glfw/src/CMakeFiles/glfw.dir/all:
 	$(MAKE) -f CGL/deps/glfw/src/CMakeFiles/glfw.dir/build.make CGL/deps/glfw/src/CMakeFiles/glfw.dir/depend
 	$(MAKE) -f CGL/deps/glfw/src/CMakeFiles/glfw.dir/build.make CGL/deps/glfw/src/CMakeFiles/glfw.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug/CMakeFiles --progress-num=22,23,24,25,26,27,28,29,30,31,32,33,34,35 "Built target glfw"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug/CMakeFiles --progress-num=22,23,24,25,26,27,28,29,30,31,32,33,34,35 "Built target glfw"
 .PHONY : CGL/deps/glfw/src/CMakeFiles/glfw.dir/all
 
 # Include target in all.
@@ -229,9 +229,9 @@ all: CGL/deps/glfw/src/CMakeFiles/glfw.dir/all
 
 # Build rule for subdir invocation for target.
 CGL/deps/glfw/src/CMakeFiles/glfw.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug/CMakeFiles 14
 	$(MAKE) -f CMakeFiles/Makefile2 CGL/deps/glfw/src/CMakeFiles/glfw.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug/CMakeFiles 0
 .PHONY : CGL/deps/glfw/src/CMakeFiles/glfw.dir/rule
 
 # Convenience name for target.
@@ -274,7 +274,7 @@ CGL/src/preinstall:
 CGL/src/CMakeFiles/CGL.dir/all: CGL/deps/glew/CMakeFiles/glew.dir/all
 	$(MAKE) -f CGL/src/CMakeFiles/CGL.dir/build.make CGL/src/CMakeFiles/CGL.dir/depend
 	$(MAKE) -f CGL/src/CMakeFiles/CGL.dir/build.make CGL/src/CMakeFiles/CGL.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17 "Built target CGL"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17 "Built target CGL"
 .PHONY : CGL/src/CMakeFiles/CGL.dir/all
 
 # Include target in all.
@@ -284,9 +284,9 @@ all: CGL/src/CMakeFiles/CGL.dir/all
 
 # Build rule for subdir invocation for target.
 CGL/src/CMakeFiles/CGL.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug/CMakeFiles 21
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug/CMakeFiles 21
 	$(MAKE) -f CMakeFiles/Makefile2 CGL/src/CMakeFiles/CGL.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug/CMakeFiles 0
 .PHONY : CGL/src/CMakeFiles/CGL.dir/rule
 
 # Convenience name for target.
@@ -331,7 +331,7 @@ src/CMakeFiles/pathtracer.dir/all: CGL/deps/glfw/src/CMakeFiles/glfw.dir/all
 src/CMakeFiles/pathtracer.dir/all: CGL/src/CMakeFiles/CGL.dir/all
 	$(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/depend
 	$(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug/CMakeFiles --progress-num=36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61 "Built target pathtracer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug/CMakeFiles --progress-num=36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61 "Built target pathtracer"
 .PHONY : src/CMakeFiles/pathtracer.dir/all
 
 # Include target in all.
@@ -341,9 +341,9 @@ all: src/CMakeFiles/pathtracer.dir/all
 
 # Build rule for subdir invocation for target.
 src/CMakeFiles/pathtracer.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug/CMakeFiles 61
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug/CMakeFiles 61
 	$(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/pathtracer.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug/CMakeFiles 0
 .PHONY : src/CMakeFiles/pathtracer.dir/rule
 
 # Convenience name for target.

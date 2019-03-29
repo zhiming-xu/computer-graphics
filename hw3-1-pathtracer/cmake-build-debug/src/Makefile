@@ -48,10 +48,10 @@ RM = /snap/clion/61/bin/cmake/linux/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/steven/CS184-GR/p3-1-pathtracer
+CMAKE_SOURCE_DIR = /home/steven/CS184-GR/hw3-1-pathtracer
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug
+CMAKE_BINARY_DIR = /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -126,14 +126,14 @@ install/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_progress_start /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug/CMakeFiles /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug/src/CMakeFiles/progress.marks
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f CMakeFiles/Makefile2 src/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug/CMakeFiles 0
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_progress_start /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug/CMakeFiles /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug/src/CMakeFiles/progress.marks
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f CMakeFiles/Makefile2 src/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f CMakeFiles/Makefile2 src/clean
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f CMakeFiles/Makefile2 src/clean
 .PHONY : clean
 
 # The main clean target
@@ -143,22 +143,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f CMakeFiles/Makefile2 src/preinstall
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f CMakeFiles/Makefile2 src/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f CMakeFiles/Makefile2 src/preinstall
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f CMakeFiles/Makefile2 src/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 src/CMakeFiles/pathtracer.dir/rule:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/pathtracer.dir/rule
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/pathtracer.dir/rule
 .PHONY : src/CMakeFiles/pathtracer.dir/rule
 
 # Convenience name for target.
@@ -168,7 +168,7 @@ pathtracer: src/CMakeFiles/pathtracer.dir/rule
 
 # fast build rule for target.
 pathtracer/fast:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/build
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/build
 .PHONY : pathtracer/fast
 
 application.o: application.cpp.o
@@ -177,7 +177,7 @@ application.o: application.cpp.o
 
 # target to build an object file
 application.cpp.o:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/application.cpp.o
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/application.cpp.o
 .PHONY : application.cpp.o
 
 application.i: application.cpp.i
@@ -186,7 +186,7 @@ application.i: application.cpp.i
 
 # target to preprocess a source file
 application.cpp.i:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/application.cpp.i
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/application.cpp.i
 .PHONY : application.cpp.i
 
 application.s: application.cpp.s
@@ -195,7 +195,7 @@ application.s: application.cpp.s
 
 # target to generate assembly for a file
 application.cpp.s:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/application.cpp.s
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/application.cpp.s
 .PHONY : application.cpp.s
 
 bbox.o: bbox.cpp.o
@@ -204,7 +204,7 @@ bbox.o: bbox.cpp.o
 
 # target to build an object file
 bbox.cpp.o:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/bbox.cpp.o
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/bbox.cpp.o
 .PHONY : bbox.cpp.o
 
 bbox.i: bbox.cpp.i
@@ -213,7 +213,7 @@ bbox.i: bbox.cpp.i
 
 # target to preprocess a source file
 bbox.cpp.i:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/bbox.cpp.i
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/bbox.cpp.i
 .PHONY : bbox.cpp.i
 
 bbox.s: bbox.cpp.s
@@ -222,7 +222,7 @@ bbox.s: bbox.cpp.s
 
 # target to generate assembly for a file
 bbox.cpp.s:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/bbox.cpp.s
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/bbox.cpp.s
 .PHONY : bbox.cpp.s
 
 bsdf.o: bsdf.cpp.o
@@ -231,7 +231,7 @@ bsdf.o: bsdf.cpp.o
 
 # target to build an object file
 bsdf.cpp.o:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/bsdf.cpp.o
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/bsdf.cpp.o
 .PHONY : bsdf.cpp.o
 
 bsdf.i: bsdf.cpp.i
@@ -240,7 +240,7 @@ bsdf.i: bsdf.cpp.i
 
 # target to preprocess a source file
 bsdf.cpp.i:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/bsdf.cpp.i
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/bsdf.cpp.i
 .PHONY : bsdf.cpp.i
 
 bsdf.s: bsdf.cpp.s
@@ -249,7 +249,7 @@ bsdf.s: bsdf.cpp.s
 
 # target to generate assembly for a file
 bsdf.cpp.s:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/bsdf.cpp.s
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/bsdf.cpp.s
 .PHONY : bsdf.cpp.s
 
 bvh.o: bvh.cpp.o
@@ -258,7 +258,7 @@ bvh.o: bvh.cpp.o
 
 # target to build an object file
 bvh.cpp.o:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/bvh.cpp.o
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/bvh.cpp.o
 .PHONY : bvh.cpp.o
 
 bvh.i: bvh.cpp.i
@@ -267,7 +267,7 @@ bvh.i: bvh.cpp.i
 
 # target to preprocess a source file
 bvh.cpp.i:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/bvh.cpp.i
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/bvh.cpp.i
 .PHONY : bvh.cpp.i
 
 bvh.s: bvh.cpp.s
@@ -276,7 +276,7 @@ bvh.s: bvh.cpp.s
 
 # target to generate assembly for a file
 bvh.cpp.s:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/bvh.cpp.s
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/bvh.cpp.s
 .PHONY : bvh.cpp.s
 
 camera.o: camera.cpp.o
@@ -285,7 +285,7 @@ camera.o: camera.cpp.o
 
 # target to build an object file
 camera.cpp.o:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/camera.cpp.o
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/camera.cpp.o
 .PHONY : camera.cpp.o
 
 camera.i: camera.cpp.i
@@ -294,7 +294,7 @@ camera.i: camera.cpp.i
 
 # target to preprocess a source file
 camera.cpp.i:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/camera.cpp.i
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/camera.cpp.i
 .PHONY : camera.cpp.i
 
 camera.s: camera.cpp.s
@@ -303,7 +303,7 @@ camera.s: camera.cpp.s
 
 # target to generate assembly for a file
 camera.cpp.s:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/camera.cpp.s
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/camera.cpp.s
 .PHONY : camera.cpp.s
 
 collada/camera_info.o: collada/camera_info.cpp.o
@@ -312,7 +312,7 @@ collada/camera_info.o: collada/camera_info.cpp.o
 
 # target to build an object file
 collada/camera_info.cpp.o:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/collada/camera_info.cpp.o
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/collada/camera_info.cpp.o
 .PHONY : collada/camera_info.cpp.o
 
 collada/camera_info.i: collada/camera_info.cpp.i
@@ -321,7 +321,7 @@ collada/camera_info.i: collada/camera_info.cpp.i
 
 # target to preprocess a source file
 collada/camera_info.cpp.i:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/collada/camera_info.cpp.i
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/collada/camera_info.cpp.i
 .PHONY : collada/camera_info.cpp.i
 
 collada/camera_info.s: collada/camera_info.cpp.s
@@ -330,7 +330,7 @@ collada/camera_info.s: collada/camera_info.cpp.s
 
 # target to generate assembly for a file
 collada/camera_info.cpp.s:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/collada/camera_info.cpp.s
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/collada/camera_info.cpp.s
 .PHONY : collada/camera_info.cpp.s
 
 collada/collada.o: collada/collada.cpp.o
@@ -339,7 +339,7 @@ collada/collada.o: collada/collada.cpp.o
 
 # target to build an object file
 collada/collada.cpp.o:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/collada/collada.cpp.o
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/collada/collada.cpp.o
 .PHONY : collada/collada.cpp.o
 
 collada/collada.i: collada/collada.cpp.i
@@ -348,7 +348,7 @@ collada/collada.i: collada/collada.cpp.i
 
 # target to preprocess a source file
 collada/collada.cpp.i:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/collada/collada.cpp.i
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/collada/collada.cpp.i
 .PHONY : collada/collada.cpp.i
 
 collada/collada.s: collada/collada.cpp.s
@@ -357,7 +357,7 @@ collada/collada.s: collada/collada.cpp.s
 
 # target to generate assembly for a file
 collada/collada.cpp.s:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/collada/collada.cpp.s
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/collada/collada.cpp.s
 .PHONY : collada/collada.cpp.s
 
 collada/light_info.o: collada/light_info.cpp.o
@@ -366,7 +366,7 @@ collada/light_info.o: collada/light_info.cpp.o
 
 # target to build an object file
 collada/light_info.cpp.o:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/collada/light_info.cpp.o
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/collada/light_info.cpp.o
 .PHONY : collada/light_info.cpp.o
 
 collada/light_info.i: collada/light_info.cpp.i
@@ -375,7 +375,7 @@ collada/light_info.i: collada/light_info.cpp.i
 
 # target to preprocess a source file
 collada/light_info.cpp.i:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/collada/light_info.cpp.i
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/collada/light_info.cpp.i
 .PHONY : collada/light_info.cpp.i
 
 collada/light_info.s: collada/light_info.cpp.s
@@ -384,7 +384,7 @@ collada/light_info.s: collada/light_info.cpp.s
 
 # target to generate assembly for a file
 collada/light_info.cpp.s:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/collada/light_info.cpp.s
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/collada/light_info.cpp.s
 .PHONY : collada/light_info.cpp.s
 
 collada/material_info.o: collada/material_info.cpp.o
@@ -393,7 +393,7 @@ collada/material_info.o: collada/material_info.cpp.o
 
 # target to build an object file
 collada/material_info.cpp.o:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/collada/material_info.cpp.o
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/collada/material_info.cpp.o
 .PHONY : collada/material_info.cpp.o
 
 collada/material_info.i: collada/material_info.cpp.i
@@ -402,7 +402,7 @@ collada/material_info.i: collada/material_info.cpp.i
 
 # target to preprocess a source file
 collada/material_info.cpp.i:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/collada/material_info.cpp.i
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/collada/material_info.cpp.i
 .PHONY : collada/material_info.cpp.i
 
 collada/material_info.s: collada/material_info.cpp.s
@@ -411,7 +411,7 @@ collada/material_info.s: collada/material_info.cpp.s
 
 # target to generate assembly for a file
 collada/material_info.cpp.s:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/collada/material_info.cpp.s
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/collada/material_info.cpp.s
 .PHONY : collada/material_info.cpp.s
 
 collada/polymesh_info.o: collada/polymesh_info.cpp.o
@@ -420,7 +420,7 @@ collada/polymesh_info.o: collada/polymesh_info.cpp.o
 
 # target to build an object file
 collada/polymesh_info.cpp.o:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/collada/polymesh_info.cpp.o
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/collada/polymesh_info.cpp.o
 .PHONY : collada/polymesh_info.cpp.o
 
 collada/polymesh_info.i: collada/polymesh_info.cpp.i
@@ -429,7 +429,7 @@ collada/polymesh_info.i: collada/polymesh_info.cpp.i
 
 # target to preprocess a source file
 collada/polymesh_info.cpp.i:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/collada/polymesh_info.cpp.i
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/collada/polymesh_info.cpp.i
 .PHONY : collada/polymesh_info.cpp.i
 
 collada/polymesh_info.s: collada/polymesh_info.cpp.s
@@ -438,7 +438,7 @@ collada/polymesh_info.s: collada/polymesh_info.cpp.s
 
 # target to generate assembly for a file
 collada/polymesh_info.cpp.s:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/collada/polymesh_info.cpp.s
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/collada/polymesh_info.cpp.s
 .PHONY : collada/polymesh_info.cpp.s
 
 collada/sphere_info.o: collada/sphere_info.cpp.o
@@ -447,7 +447,7 @@ collada/sphere_info.o: collada/sphere_info.cpp.o
 
 # target to build an object file
 collada/sphere_info.cpp.o:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/collada/sphere_info.cpp.o
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/collada/sphere_info.cpp.o
 .PHONY : collada/sphere_info.cpp.o
 
 collada/sphere_info.i: collada/sphere_info.cpp.i
@@ -456,7 +456,7 @@ collada/sphere_info.i: collada/sphere_info.cpp.i
 
 # target to preprocess a source file
 collada/sphere_info.cpp.i:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/collada/sphere_info.cpp.i
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/collada/sphere_info.cpp.i
 .PHONY : collada/sphere_info.cpp.i
 
 collada/sphere_info.s: collada/sphere_info.cpp.s
@@ -465,7 +465,7 @@ collada/sphere_info.s: collada/sphere_info.cpp.s
 
 # target to generate assembly for a file
 collada/sphere_info.cpp.s:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/collada/sphere_info.cpp.s
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/collada/sphere_info.cpp.s
 .PHONY : collada/sphere_info.cpp.s
 
 dynamic_scene/mesh.o: dynamic_scene/mesh.cpp.o
@@ -474,7 +474,7 @@ dynamic_scene/mesh.o: dynamic_scene/mesh.cpp.o
 
 # target to build an object file
 dynamic_scene/mesh.cpp.o:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/dynamic_scene/mesh.cpp.o
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/dynamic_scene/mesh.cpp.o
 .PHONY : dynamic_scene/mesh.cpp.o
 
 dynamic_scene/mesh.i: dynamic_scene/mesh.cpp.i
@@ -483,7 +483,7 @@ dynamic_scene/mesh.i: dynamic_scene/mesh.cpp.i
 
 # target to preprocess a source file
 dynamic_scene/mesh.cpp.i:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/dynamic_scene/mesh.cpp.i
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/dynamic_scene/mesh.cpp.i
 .PHONY : dynamic_scene/mesh.cpp.i
 
 dynamic_scene/mesh.s: dynamic_scene/mesh.cpp.s
@@ -492,7 +492,7 @@ dynamic_scene/mesh.s: dynamic_scene/mesh.cpp.s
 
 # target to generate assembly for a file
 dynamic_scene/mesh.cpp.s:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/dynamic_scene/mesh.cpp.s
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/dynamic_scene/mesh.cpp.s
 .PHONY : dynamic_scene/mesh.cpp.s
 
 dynamic_scene/scene.o: dynamic_scene/scene.cpp.o
@@ -501,7 +501,7 @@ dynamic_scene/scene.o: dynamic_scene/scene.cpp.o
 
 # target to build an object file
 dynamic_scene/scene.cpp.o:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/dynamic_scene/scene.cpp.o
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/dynamic_scene/scene.cpp.o
 .PHONY : dynamic_scene/scene.cpp.o
 
 dynamic_scene/scene.i: dynamic_scene/scene.cpp.i
@@ -510,7 +510,7 @@ dynamic_scene/scene.i: dynamic_scene/scene.cpp.i
 
 # target to preprocess a source file
 dynamic_scene/scene.cpp.i:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/dynamic_scene/scene.cpp.i
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/dynamic_scene/scene.cpp.i
 .PHONY : dynamic_scene/scene.cpp.i
 
 dynamic_scene/scene.s: dynamic_scene/scene.cpp.s
@@ -519,7 +519,7 @@ dynamic_scene/scene.s: dynamic_scene/scene.cpp.s
 
 # target to generate assembly for a file
 dynamic_scene/scene.cpp.s:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/dynamic_scene/scene.cpp.s
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/dynamic_scene/scene.cpp.s
 .PHONY : dynamic_scene/scene.cpp.s
 
 dynamic_scene/sphere.o: dynamic_scene/sphere.cpp.o
@@ -528,7 +528,7 @@ dynamic_scene/sphere.o: dynamic_scene/sphere.cpp.o
 
 # target to build an object file
 dynamic_scene/sphere.cpp.o:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/dynamic_scene/sphere.cpp.o
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/dynamic_scene/sphere.cpp.o
 .PHONY : dynamic_scene/sphere.cpp.o
 
 dynamic_scene/sphere.i: dynamic_scene/sphere.cpp.i
@@ -537,7 +537,7 @@ dynamic_scene/sphere.i: dynamic_scene/sphere.cpp.i
 
 # target to preprocess a source file
 dynamic_scene/sphere.cpp.i:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/dynamic_scene/sphere.cpp.i
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/dynamic_scene/sphere.cpp.i
 .PHONY : dynamic_scene/sphere.cpp.i
 
 dynamic_scene/sphere.s: dynamic_scene/sphere.cpp.s
@@ -546,7 +546,7 @@ dynamic_scene/sphere.s: dynamic_scene/sphere.cpp.s
 
 # target to generate assembly for a file
 dynamic_scene/sphere.cpp.s:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/dynamic_scene/sphere.cpp.s
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/dynamic_scene/sphere.cpp.s
 .PHONY : dynamic_scene/sphere.cpp.s
 
 halfEdgeMesh.o: halfEdgeMesh.cpp.o
@@ -555,7 +555,7 @@ halfEdgeMesh.o: halfEdgeMesh.cpp.o
 
 # target to build an object file
 halfEdgeMesh.cpp.o:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/halfEdgeMesh.cpp.o
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/halfEdgeMesh.cpp.o
 .PHONY : halfEdgeMesh.cpp.o
 
 halfEdgeMesh.i: halfEdgeMesh.cpp.i
@@ -564,7 +564,7 @@ halfEdgeMesh.i: halfEdgeMesh.cpp.i
 
 # target to preprocess a source file
 halfEdgeMesh.cpp.i:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/halfEdgeMesh.cpp.i
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/halfEdgeMesh.cpp.i
 .PHONY : halfEdgeMesh.cpp.i
 
 halfEdgeMesh.s: halfEdgeMesh.cpp.s
@@ -573,7 +573,7 @@ halfEdgeMesh.s: halfEdgeMesh.cpp.s
 
 # target to generate assembly for a file
 halfEdgeMesh.cpp.s:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/halfEdgeMesh.cpp.s
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/halfEdgeMesh.cpp.s
 .PHONY : halfEdgeMesh.cpp.s
 
 main.o: main.cpp.o
@@ -582,7 +582,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/main.cpp.o
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -591,7 +591,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/main.cpp.i
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -600,7 +600,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/main.cpp.s
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 meshEdit.o: meshEdit.cpp.o
@@ -609,7 +609,7 @@ meshEdit.o: meshEdit.cpp.o
 
 # target to build an object file
 meshEdit.cpp.o:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/meshEdit.cpp.o
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/meshEdit.cpp.o
 .PHONY : meshEdit.cpp.o
 
 meshEdit.i: meshEdit.cpp.i
@@ -618,7 +618,7 @@ meshEdit.i: meshEdit.cpp.i
 
 # target to preprocess a source file
 meshEdit.cpp.i:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/meshEdit.cpp.i
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/meshEdit.cpp.i
 .PHONY : meshEdit.cpp.i
 
 meshEdit.s: meshEdit.cpp.s
@@ -627,7 +627,7 @@ meshEdit.s: meshEdit.cpp.s
 
 # target to generate assembly for a file
 meshEdit.cpp.s:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/meshEdit.cpp.s
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/meshEdit.cpp.s
 .PHONY : meshEdit.cpp.s
 
 misc/sphere_drawing.o: misc/sphere_drawing.cpp.o
@@ -636,7 +636,7 @@ misc/sphere_drawing.o: misc/sphere_drawing.cpp.o
 
 # target to build an object file
 misc/sphere_drawing.cpp.o:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/misc/sphere_drawing.cpp.o
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/misc/sphere_drawing.cpp.o
 .PHONY : misc/sphere_drawing.cpp.o
 
 misc/sphere_drawing.i: misc/sphere_drawing.cpp.i
@@ -645,7 +645,7 @@ misc/sphere_drawing.i: misc/sphere_drawing.cpp.i
 
 # target to preprocess a source file
 misc/sphere_drawing.cpp.i:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/misc/sphere_drawing.cpp.i
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/misc/sphere_drawing.cpp.i
 .PHONY : misc/sphere_drawing.cpp.i
 
 misc/sphere_drawing.s: misc/sphere_drawing.cpp.s
@@ -654,7 +654,7 @@ misc/sphere_drawing.s: misc/sphere_drawing.cpp.s
 
 # target to generate assembly for a file
 misc/sphere_drawing.cpp.s:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/misc/sphere_drawing.cpp.s
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/misc/sphere_drawing.cpp.s
 .PHONY : misc/sphere_drawing.cpp.s
 
 pathtracer.o: pathtracer.cpp.o
@@ -663,7 +663,7 @@ pathtracer.o: pathtracer.cpp.o
 
 # target to build an object file
 pathtracer.cpp.o:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/pathtracer.cpp.o
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/pathtracer.cpp.o
 .PHONY : pathtracer.cpp.o
 
 pathtracer.i: pathtracer.cpp.i
@@ -672,7 +672,7 @@ pathtracer.i: pathtracer.cpp.i
 
 # target to preprocess a source file
 pathtracer.cpp.i:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/pathtracer.cpp.i
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/pathtracer.cpp.i
 .PHONY : pathtracer.cpp.i
 
 pathtracer.s: pathtracer.cpp.s
@@ -681,7 +681,7 @@ pathtracer.s: pathtracer.cpp.s
 
 # target to generate assembly for a file
 pathtracer.cpp.s:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/pathtracer.cpp.s
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/pathtracer.cpp.s
 .PHONY : pathtracer.cpp.s
 
 sampler.o: sampler.cpp.o
@@ -690,7 +690,7 @@ sampler.o: sampler.cpp.o
 
 # target to build an object file
 sampler.cpp.o:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/sampler.cpp.o
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/sampler.cpp.o
 .PHONY : sampler.cpp.o
 
 sampler.i: sampler.cpp.i
@@ -699,7 +699,7 @@ sampler.i: sampler.cpp.i
 
 # target to preprocess a source file
 sampler.cpp.i:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/sampler.cpp.i
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/sampler.cpp.i
 .PHONY : sampler.cpp.i
 
 sampler.s: sampler.cpp.s
@@ -708,7 +708,7 @@ sampler.s: sampler.cpp.s
 
 # target to generate assembly for a file
 sampler.cpp.s:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/sampler.cpp.s
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/sampler.cpp.s
 .PHONY : sampler.cpp.s
 
 static_scene/environment_light.o: static_scene/environment_light.cpp.o
@@ -717,7 +717,7 @@ static_scene/environment_light.o: static_scene/environment_light.cpp.o
 
 # target to build an object file
 static_scene/environment_light.cpp.o:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/static_scene/environment_light.cpp.o
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/static_scene/environment_light.cpp.o
 .PHONY : static_scene/environment_light.cpp.o
 
 static_scene/environment_light.i: static_scene/environment_light.cpp.i
@@ -726,7 +726,7 @@ static_scene/environment_light.i: static_scene/environment_light.cpp.i
 
 # target to preprocess a source file
 static_scene/environment_light.cpp.i:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/static_scene/environment_light.cpp.i
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/static_scene/environment_light.cpp.i
 .PHONY : static_scene/environment_light.cpp.i
 
 static_scene/environment_light.s: static_scene/environment_light.cpp.s
@@ -735,7 +735,7 @@ static_scene/environment_light.s: static_scene/environment_light.cpp.s
 
 # target to generate assembly for a file
 static_scene/environment_light.cpp.s:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/static_scene/environment_light.cpp.s
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/static_scene/environment_light.cpp.s
 .PHONY : static_scene/environment_light.cpp.s
 
 static_scene/light.o: static_scene/light.cpp.o
@@ -744,7 +744,7 @@ static_scene/light.o: static_scene/light.cpp.o
 
 # target to build an object file
 static_scene/light.cpp.o:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/static_scene/light.cpp.o
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/static_scene/light.cpp.o
 .PHONY : static_scene/light.cpp.o
 
 static_scene/light.i: static_scene/light.cpp.i
@@ -753,7 +753,7 @@ static_scene/light.i: static_scene/light.cpp.i
 
 # target to preprocess a source file
 static_scene/light.cpp.i:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/static_scene/light.cpp.i
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/static_scene/light.cpp.i
 .PHONY : static_scene/light.cpp.i
 
 static_scene/light.s: static_scene/light.cpp.s
@@ -762,7 +762,7 @@ static_scene/light.s: static_scene/light.cpp.s
 
 # target to generate assembly for a file
 static_scene/light.cpp.s:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/static_scene/light.cpp.s
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/static_scene/light.cpp.s
 .PHONY : static_scene/light.cpp.s
 
 static_scene/object.o: static_scene/object.cpp.o
@@ -771,7 +771,7 @@ static_scene/object.o: static_scene/object.cpp.o
 
 # target to build an object file
 static_scene/object.cpp.o:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/static_scene/object.cpp.o
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/static_scene/object.cpp.o
 .PHONY : static_scene/object.cpp.o
 
 static_scene/object.i: static_scene/object.cpp.i
@@ -780,7 +780,7 @@ static_scene/object.i: static_scene/object.cpp.i
 
 # target to preprocess a source file
 static_scene/object.cpp.i:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/static_scene/object.cpp.i
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/static_scene/object.cpp.i
 .PHONY : static_scene/object.cpp.i
 
 static_scene/object.s: static_scene/object.cpp.s
@@ -789,7 +789,7 @@ static_scene/object.s: static_scene/object.cpp.s
 
 # target to generate assembly for a file
 static_scene/object.cpp.s:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/static_scene/object.cpp.s
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/static_scene/object.cpp.s
 .PHONY : static_scene/object.cpp.s
 
 static_scene/sphere.o: static_scene/sphere.cpp.o
@@ -798,7 +798,7 @@ static_scene/sphere.o: static_scene/sphere.cpp.o
 
 # target to build an object file
 static_scene/sphere.cpp.o:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/static_scene/sphere.cpp.o
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/static_scene/sphere.cpp.o
 .PHONY : static_scene/sphere.cpp.o
 
 static_scene/sphere.i: static_scene/sphere.cpp.i
@@ -807,7 +807,7 @@ static_scene/sphere.i: static_scene/sphere.cpp.i
 
 # target to preprocess a source file
 static_scene/sphere.cpp.i:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/static_scene/sphere.cpp.i
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/static_scene/sphere.cpp.i
 .PHONY : static_scene/sphere.cpp.i
 
 static_scene/sphere.s: static_scene/sphere.cpp.s
@@ -816,7 +816,7 @@ static_scene/sphere.s: static_scene/sphere.cpp.s
 
 # target to generate assembly for a file
 static_scene/sphere.cpp.s:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/static_scene/sphere.cpp.s
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/static_scene/sphere.cpp.s
 .PHONY : static_scene/sphere.cpp.s
 
 static_scene/triangle.o: static_scene/triangle.cpp.o
@@ -825,7 +825,7 @@ static_scene/triangle.o: static_scene/triangle.cpp.o
 
 # target to build an object file
 static_scene/triangle.cpp.o:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/static_scene/triangle.cpp.o
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/static_scene/triangle.cpp.o
 .PHONY : static_scene/triangle.cpp.o
 
 static_scene/triangle.i: static_scene/triangle.cpp.i
@@ -834,7 +834,7 @@ static_scene/triangle.i: static_scene/triangle.cpp.i
 
 # target to preprocess a source file
 static_scene/triangle.cpp.i:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/static_scene/triangle.cpp.i
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/static_scene/triangle.cpp.i
 .PHONY : static_scene/triangle.cpp.i
 
 static_scene/triangle.s: static_scene/triangle.cpp.s
@@ -843,7 +843,7 @@ static_scene/triangle.s: static_scene/triangle.cpp.s
 
 # target to generate assembly for a file
 static_scene/triangle.cpp.s:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/static_scene/triangle.cpp.s
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(MAKE) -f src/CMakeFiles/pathtracer.dir/build.make src/CMakeFiles/pathtracer.dir/static_scene/triangle.cpp.s
 .PHONY : static_scene/triangle.cpp.s
 
 # Help Target
@@ -945,6 +945,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

@@ -527,28 +527,26 @@ Spectrum PathTracer::estimate_direct_lighting_hemisphere(const Ray& r, const Int
   // TODO (Part 3.2): 
   // Write your sampling loop here
   // COMMENT OUT `normal_shading` IN `est_radiance_global_illumination` BEFORE YOU BEGIN
-  for (int i = 0; i < num_samples; i++) {
+  for (int i = 0; i < num_samples; i++)
+  {
     //direction in world space
-    Vector3D w_in = hemisphereSampler->get_sample();
+    Vector3D w_in = this->hemisphereSampler->get_sample();
 
-    Vector3D raydir = o2w * w_in;
-    Vector3D rayorig = hit_p + (EPS_D * raydir); //If you don't do this, the ray will frequently intersect the ray's origin triangle at the same spot again because of floating point imprecision.
+    Vector3D direction = o2w * w_in;
+    Vector3D origin = hit_p + (EPS_D * direction);
+    Ray ray = Ray(origin, direction);
+    Intersection intersec;
+    bool intersected = this->bvh->intersect(ray, &intersec);
 
-    Ray r = Ray(rayorig, raydir);
-    Intersection newIsect;
-    bool inter = bvh->intersect(r, &newIsect);
-
-    if (inter) {
-      //bsdf at point
+    if (intersected)
+    {
       Spectrum b = isect.bsdf->f(w_out, w_in);
-      //incoming radiance
-      Spectrum e = newIsect.bsdf->get_emission();
-      //w_in.z is cosine of angle between w_in and normal vector
+      Spectrum e = intersec.bsdf->get_emission();
       L_out += b * e * cos_theta(w_in);
     }
   }
 
-  L_out = (L_out * 2.0 * PI) / (1.0 * num_samples);
+  L_out = (L_out * 2.0 * PI) / num_samples;
 
   return L_out;
 }
@@ -574,37 +572,37 @@ Spectrum PathTracer::estimate_direct_lighting_importance(const Ray& r, const Int
   // COMMENT OUT `normal_shading` IN `est_radiance_global_illumination` BEFORE YOU BEGIN
 
 
-  for (SceneLight* light : scene->lights) {
+  for (SceneLight* light : this->scene->lights)
+  {
     int num_samples;
-    if (light->is_delta_light()) num_samples = 1;
-    else num_samples = ns_area_light;
+    if(light->is_delta_light())
+      num_samples = 1;
+    else
+      num_samples = this->ns_area_light;
 
     Vector3D wi;
-    float distToLight;
+    float dist_to_light;
     float pdf;
 
-    for (int i = 0; i < num_samples; i++) {
-        Spectrum radiance = light->sample_L(hit_p, &wi, &distToLight, &pdf);
-
-        // In order to pass it to the BSDF, you need to compute it in object space
+    for (int i = 0; i < num_samples; i++)
+    {
+        Spectrum radiance = light->sample_L(hit_p, &wi, &dist_to_light, &pdf);
         Vector3D w_in = w2o * wi;
-
-        if (w_in.z >= 0) {
-            Vector3D rayorig = hit_p + (EPS_D * wi);
-            Ray r2 = Ray(rayorig, wi);
-            r2.max_t = distToLight;
-
-            Intersection newIsect;
-
-            bool inter = bvh->intersect(r2, &newIsect);
-
-            if (!inter) {
+        if (w_in.z >= 0)
+        {
+            Vector3D orgin = hit_p + (EPS_D * wi);
+            Ray r2 = Ray(orgin, wi);
+            r2.max_t = dist_to_light;
+            Intersection intersec;
+            bool intersected = this->bvh->intersect(r2, &intersec);
+            if (!intersected)
+            {
                 Spectrum b = isect.bsdf->f(w_out, w_in);
                 L_out += (radiance * b * cos_theta(w_in)) / pdf;
             }
         }
     }
-    L_out /= (1.0 * num_samples);
+    L_out /= num_samples;
   }
   return L_out;
 }
@@ -613,9 +611,7 @@ Spectrum PathTracer::zero_bounce_radiance(const Ray&r, const Intersection& isect
 
   // TODO (Part 4.2):
   // Returns the light that results from no bounces of light
-
   return isect.bsdf->get_emission();
-
 }
 
 Spectrum PathTracer::one_bounce_radiance(const Ray&r, const Intersection& isect) {
@@ -626,10 +622,10 @@ Spectrum PathTracer::one_bounce_radiance(const Ray&r, const Intersection& isect)
   // (you implemented these functions in Part 3)
 
   
-  if (direct_hemisphere_sample)
-    return estimate_direct_lighting_hemisphere(r, isect);
+  if(this->direct_hemisphere_sample)
+    return this->estimate_direct_lighting_hemisphere(r, isect);
   else
-    return estimate_direct_lighting_importance(r, isect);
+    return this->estimate_direct_lighting_importance(r, isect);
 }
 
 Spectrum PathTracer::at_least_one_bounce_radiance(const Ray&r, const Intersection& isect) {
@@ -647,19 +643,24 @@ Spectrum PathTracer::at_least_one_bounce_radiance(const Ray&r, const Intersectio
   // performing Russian roulette step, and returning a recursively 
   // traced ray (when applicable) goes
 
-  float russianRoulette = 0.7;
+  auto russian_roulette = coin_flip(.5)?0.6:0.7;
   Vector3D w_in;
   float pdf;
   Spectrum sample = isect.bsdf->sample_f(w_out, &w_in, &pdf);
-  bool t = (coin_flip(1 - russianRoulette) && (max_ray_depth <= 1 || r.depth != max_ray_depth)) || (r.depth <= 1);
-  if (!t) {
+  bool flag = (coin_flip(1 - russian_roulette) && (this->max_ray_depth <= 1 ||
+            r.depth != this->max_ray_depth)) || (r.depth <= 1);
+  if (!flag)
+  {
     Vector3D world_wi = o2w * w_in;
-    Ray newR((EPS_D * world_wi) + hit_p, world_wi, INF_D, r.depth - 1);
-    Intersection newIsect;
-    if (bvh->intersect(newR, &newIsect)) {
-      Spectrum bounce = at_least_one_bounce_radiance(newR, newIsect);
-      if (r.depth == max_ray_depth) L_out += (w_in.z * sample * bounce)/pdf;
-      else L_out += (w_in.z * sample * bounce)/pdf/russianRoulette;
+    auto ray = Ray((EPS_D * world_wi) + hit_p, world_wi, INF_D, r.depth - 1);
+    Intersection intersec;
+    if (this->bvh->intersect(ray, &intersec))
+    {
+      Spectrum bounce = this->at_least_one_bounce_radiance(ray, intersec);
+      if (r.depth == this->max_ray_depth)
+        L_out += (w_in.z * sample * bounce) / pdf;
+      else
+        L_out += (w_in.z * sample * bounce) / pdf / russian_roulette;
     }
   }
   return L_out;
@@ -688,10 +689,10 @@ Spectrum PathTracer::est_radiance_global_illumination(const Ray &r) {
   // L_out = estimate_direct_lighting_importance(r, isect);
 
 
-  // TODO (Part 4): Accumulate the "direct" and "indirect"
+  // TODO (Part 4): Accumulate the "direct" and "indirect" 
   // parts of global illumination into L_out rather than just direct
-
-  return zero_bounce_radiance(r, isect) + at_least_one_bounce_radiance(r, isect);
+  
+  return this->zero_bounce_radiance(r, isect) + this->at_least_one_bounce_radiance(r, isect);
 
 }
 
@@ -706,42 +707,46 @@ Spectrum PathTracer::raytrace_pixel(size_t x, size_t y) {
   // Modify your implementation to include adaptive sampling.
   // Use the command line parameters "samplesPerBatch" and "maxTolerance"
 
-  int num_samples = ns_aa;            // total samples to evaluate
-  Vector2D origin = Vector2D(x,y);    // bottom left corner of the pixel
+  auto num_samples = this->ns_aa;            // total samples to evaluate
+  double width = this->sampleBuffer.w;
+  double height = this->sampleBuffer.h;
+  double sigma = 0;
+  double sigma_2 = 0;
 
-  double width = sampleBuffer.w;
-  double height = sampleBuffer.h;
-  // double s1 = 0;
-  // double s2 = 0;
-  if (num_samples == 1) {
-    Ray ray = camera->generate_ray((x + 0.5)/width, (y + 0.5)/height);
-    ray.depth = max_ray_depth;
-    return est_radiance_global_illumination(ray);
+  if (num_samples == 1)
+  {
+    Ray ray = this->camera->generate_ray((x + 0.5)/width, (y + 0.5)/height);
+    ray.depth = this->max_ray_depth;
+    return this->est_radiance_global_illumination(ray);
   } 
-  else {
-    Spectrum spect = Spectrum();
+  else
+  {
+    Spectrum result = Spectrum();
     int i = 0;
-    for (; i < num_samples; i++) {
-      // if (i % samplesPerBatch == 0 && i > 1) {
-      //   double mean = s1/double(i);
-      //   double varSquare = (s2 - (s1*s1)/double(i))/(i - 1.0);
-      //   if (1.96*sqrt(varSquare/double(i)) <= maxTolerance*mean) {
-      //     break;
-      //   } 
-      // }
-      Vector2D randomOffset = gridSampler->get_sample();
-      Ray ray = camera->generate_ray((x + randomOffset.x)/width, (y + randomOffset.y)/height);
-      ray.depth = max_ray_depth;
-      Spectrum estIllum = est_radiance_global_illumination(ray);
-      spect += estIllum;
-      // s1 += estIllum.illum();
-      // s2 += estIllum.illum() * estIllum.illum();
+    for (i = 0; i < num_samples; i++)
+    {
+      if (i % samplesPerBatch == 0 && i)
+      {
+         double mean = sigma/double(i);
+         double var = (sigma_2 - (sigma*sigma)/double(i))/(i - 1.0);
+         if (1.96*sqrt(var/double(i)) <= maxTolerance*mean)
+         {
+           break;
+         }
+       }
+      Vector2D sample_v = this->gridSampler->get_sample();
+      Ray sample_r = this->camera->generate_ray((x + sample_v.x)/width, (y + sample_v.y)/height);
+      sample_r.depth = this->max_ray_depth;
+      Spectrum tmp = this->est_radiance_global_illumination(sample_r);
+      result += tmp;
+      sigma += tmp.illum();
+      sigma_2 += tmp.illum() * tmp.illum();
     }
-    // sampleCountBuffer[x + y*width] = i;
-    return spect/double(i);
+    this->sampleCountBuffer[x + y*width] = i;
+    return result/double(i);
   }
-
-
+  std::cout<<"\033[31mShould not reach here!\033[0m"<<endl;
+  exit(-1);
 }
 
 void PathTracer::raytrace_tile(int tile_x, int tile_y,

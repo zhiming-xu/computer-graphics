@@ -1,4 +1,4 @@
-/snap/clion/61/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/steven/CS184-GR/p3-1-pathtracer
+/snap/clion/61/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/steven/CS184-GR/hw3-1-pathtracer
 -- The C compiler identification is GNU 7.3.0
 -- The CXX compiler identification is GNU 7.3.0
 -- Check for working C compiler: /usr/bin/cc
@@ -77,4 +77,4 @@ CMake Deprecation Warning at CGL/deps/glfw/CMakeLists.txt:8 (cmake_policy):
 -- Looking for glXGetProcAddressEXT - not found
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/steven/CS184-GR/p3-1-pathtracer/cmake-build-debug
+-- Build files have been written to: /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug
