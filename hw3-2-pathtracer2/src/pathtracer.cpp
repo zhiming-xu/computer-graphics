@@ -563,7 +563,7 @@ void PathTracer::raytrace_tile(int tile_x, int tile_y,
     for (size_t x = tile_start_x; x < tile_end_x; x++) {
       // TODO: 4.0
       // Change from false to true to enable thin lens
-      Spectrum s = raytrace_pixel(x, y, false);
+      Spectrum s = raytrace_pixel(x, y, true);
       sampleBuffer.update_pixel(s, x, y);
     }
   }

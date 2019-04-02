@@ -429,14 +429,12 @@ void Application::keyboard_event(int key, int event, unsigned char mods) {
             pathtracer->save_image();
             break;
           case '[': case ']':
-          case '+': case '=':
-          case '-': case '_':
-          case '.': case '>':
-          case ',': case '<':
-          case 'h': case 'H':
-          case 'q': case 'Q': case 'W': case 'w': 
+          case '+': case '=': case '-': case '_':
+          case '.': case '>': case ',': case '<':
+          case 'q': case 'Q': case 'W': case 'w':
           case 'z': case 'x': case 'Z': case 'X':
-          case ';': case '\'': 
+          case ';': case '\'': case ':': case '\"':
+          case 'k': case 'K': case 'l': case 'L':
           case '0': case '1': case '2': case '3': case '4':
             pathtracer->stop();
             pathtracer->key_press(key);

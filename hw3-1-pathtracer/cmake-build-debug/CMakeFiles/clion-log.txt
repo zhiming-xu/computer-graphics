@@ -1,4 +1,4 @@
-/snap/clion/61/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/steven/CS184-GR/hw3-1-pathtracer
+/snap/clion/67/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/steven/CS184-GR/hw3-1-pathtracer
 -- The C compiler identification is GNU 7.3.0
 -- The CXX compiler identification is GNU 7.3.0
 -- Check for working C compiler: /usr/bin/cc
@@ -13,7 +13,7 @@
 -- Detecting CXX compiler ABI info - done
 -- Detecting CXX compile features
 -- Detecting CXX compile features - done
-CMake Warning (dev) at /snap/clion/61/bin/cmake/linux/share/cmake-3.13/Modules/FindOpenGL.cmake:270 (message):
+CMake Warning (dev) at /snap/clion/67/bin/cmake/linux/share/cmake-3.13/Modules/FindOpenGL.cmake:270 (message):
   Policy CMP0072 is not set: FindOpenGL prefers GLVND by default when
   available.  Run "cmake --help-policy CMP0072" for policy details.  Use the
   cmake_policy command to set the policy and suppress this warning.
@@ -33,17 +33,6 @@ Call Stack (most recent call first):
   CMakeLists.txt:121 (find_package)
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
--- Found OpenGL: /usr/lib/x86_64-linux-gnu/libOpenGL.so   
--- Looking for pthread.h
--- Looking for pthread.h - found
--- Looking for pthread_create
--- Looking for pthread_create - not found
--- Looking for pthread_create in pthreads
--- Looking for pthread_create in pthreads - not found
--- Looking for pthread_create in pthread
--- Looking for pthread_create in pthread - found
--- Found Threads: TRUE  
--- Found Freetype: /usr/lib/x86_64-linux-gnu/libfreetype.so (found version "2.8.1") 
 CMake Deprecation Warning at CGL/deps/glfw/CMakeLists.txt:8 (cmake_policy):
   The OLD behavior for policy CMP0042 will be removed from a future version
   of CMake.
@@ -56,25 +45,6 @@ CMake Deprecation Warning at CGL/deps/glfw/CMakeLists.txt:8 (cmake_policy):
 
 -- Using X11 for window creation
 -- Using GLX for context creation
--- Looking for XOpenDisplay in /usr/lib/x86_64-linux-gnu/libX11.so;/usr/lib/x86_64-linux-gnu/libXext.so
--- Looking for XOpenDisplay in /usr/lib/x86_64-linux-gnu/libX11.so;/usr/lib/x86_64-linux-gnu/libXext.so - found
--- Looking for gethostbyname
--- Looking for gethostbyname - found
--- Looking for connect
--- Looking for connect - found
--- Looking for remove
--- Looking for remove - found
--- Looking for shmat
--- Looking for shmat - found
--- Looking for IceConnectionNumber in ICE
--- Looking for IceConnectionNumber in ICE - found
--- Found X11: /usr/lib/x86_64-linux-gnu/libX11.so
--- Looking for glXGetProcAddress
--- Looking for glXGetProcAddress - found
--- Looking for glXGetProcAddressARB
--- Looking for glXGetProcAddressARB - found
--- Looking for glXGetProcAddressEXT
--- Looking for glXGetProcAddressEXT - not found
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /home/steven/CS184-GR/hw3-1-pathtracer/cmake-build-debug

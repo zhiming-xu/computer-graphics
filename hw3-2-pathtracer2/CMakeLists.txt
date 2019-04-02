@@ -39,7 +39,7 @@ if(APPLE)
   # GCC configuration
   if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
 
-    set(GCC_CXX_FLAGS "-std=gnu++11 -m64")
+    set(GCC_CXX_FLAGS "-std=gnu++11 -no-pie -m64")
 
     if(BUILD_DEBUG)
       set(CMAKE_BUILD_TYPE Debug)
@@ -64,7 +64,7 @@ if(LINUX)
   # GCC only
   if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
 
-    set(GCC_CXX_FLAGS "-std=gnu++11 -m64")
+    set(GCC_CXX_FLAGS "-std=gnu++11 -no-pie -m64")
 
     # Debug configuration
     if(BUILD_DEBUG)
