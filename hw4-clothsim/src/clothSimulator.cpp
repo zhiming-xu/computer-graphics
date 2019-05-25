@@ -5,6 +5,7 @@
 #include <nanogui/nanogui.h>
 
 #include "clothSimulator.h"
+#include "leak_fix.h"
 
 #include "camera.h"
 #include "cloth.h"
@@ -358,6 +359,10 @@ void ClothSimulator::drawWireframe(GLShader &shader) {
   //shader.uploadAttrib("in_normal", normals);
 
   shader.drawArray(GL_LINES, 0, num_springs * 2);
+
+#ifdef LEAK_PATCH_ON
+  shader.freeAttrib("in_position");
+#endif
 }
 
 void ClothSimulator::drawNormals(GLShader &shader) {
@@ -390,6 +395,10 @@ void ClothSimulator::drawNormals(GLShader &shader) {
   shader.uploadAttrib("in_normal", normals, false);
 
   shader.drawArray(GL_TRIANGLES, 0, num_tris * 3);
+#ifdef LEAK_PATCH_ON
+  shader.freeAttrib("in_position");
+  shader.freeAttrib("in_normal");
+#endif
 }
 
 void ClothSimulator::drawPhong(GLShader &shader) {
@@ -435,6 +444,12 @@ void ClothSimulator::drawPhong(GLShader &shader) {
   shader.uploadAttrib("in_tangent", tangents, false);
 
   shader.drawArray(GL_TRIANGLES, 0, num_tris * 3);
+#ifdef LEAK_PATCH_ON
+  shader.freeAttrib("in_position");
+  shader.freeAttrib("in_normal");
+  shader.freeAttrib("in_uv");
+  shader.freeAttrib("in_tangent");
+#endif
 }
 
 // ----------------------------------------------------------------------------
@@ -450,18 +465,18 @@ Matrix4f ClothSimulator::getProjectionMatrix() {
   Matrix4f perspective;
   perspective.setZero();
 
-  double near = camera.near_clip();
-  double far = camera.far_clip();
+  double cam_near = camera.near_clip();
+  double cam_far = camera.far_clip();
 
   double theta = camera.v_fov() * M_PI / 360;
-  double range = far - near;
+  double range = cam_far - cam_near;
   double invtan = 1. / tanf(theta);
 
   perspective(0, 0) = invtan / camera.aspect_ratio();
   perspective(1, 1) = invtan;
-  perspective(2, 2) = -(near + far) / range;
+  perspective(2, 2) = -(cam_near + cam_far) / range;
   perspective(3, 2) = -1;
-  perspective(2, 3) = -2 * near * far / range;
+  perspective(2, 3) = -2 * cam_near * cam_far / range;
   perspective(3, 3) = 0;
 
   return perspective;

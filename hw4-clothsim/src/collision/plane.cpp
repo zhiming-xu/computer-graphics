@@ -3,6 +3,7 @@
 
 #include "../clothMesh.h"
 #include "../clothSimulator.h"
+#include "../leak_fix.h"
 #include "plane.h"
 
 using namespace std;
@@ -10,9 +11,28 @@ using namespace CGL;
 
 #define SURFACE_OFFSET 0.0001
 
+Vector3D intersection(const Vector3D n, const Vector3D vp, const Vector3D m, const Vector3D vl)
+{
+    auto root = ((n[0]-m[0])*vp[0] + (n[1]-m[1])*vp[1] + (n[2]-m[2])*vp[2]) / (dot(vl, vp));
+    return m + root * vl;
+}
+
+template <typename T> inline int sgn(T var)
+{
+    return (var > 0) - (var < 0);
+}
+
 void Plane::collide(PointMass &pm) {
   // TODO (Part 3): Handle collisions with planes.
-
+  auto before = pm.last_position - this->point;
+  auto after = pm.position - this->point;
+  if(sgn(dot(before, normal))^sgn(dot(after, normal)))
+  {
+      auto vl = (before - after).unit();
+      auto tangent_point = intersection(this->point, this->normal, before, vl);
+      auto correction = (tangent_point - pm.last_position) * (1 - SURFACE_OFFSET);
+      pm.position = pm.last_position + correction * (1 - this->friction);
+  }
 }
 
 void Plane::render(GLShader &shader) {
@@ -47,4 +67,10 @@ void Plane::render(GLShader &shader) {
   }
 
   shader.drawArray(GL_TRIANGLE_STRIP, 0, 4);
+#ifdef LEAK_PATCH_ON
+  shader.freeAttrib("in_position");
+  if (shader.attrib("in_normal", false) != -1) {
+    shader.freeAttrib("in_normal");
+  }
+#endif
 }
